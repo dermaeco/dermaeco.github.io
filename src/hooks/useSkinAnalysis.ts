@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useGuestMode } from '@/hooks/useGuestMode'
-import { supabase } from '@/lib/supabase'
+import { supabase } from '@/integrations/supabase/client'
 import { AnalysisResults } from '@/types'
 import toast from 'react-hot-toast'
 

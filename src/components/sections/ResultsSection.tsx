@@ -69,9 +69,15 @@ export function ResultsSection({
           <div className="text-center py-20">
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-              className="w-20 h-20 border-4 border-stone-200 border-t-stone-800 rounded-full mx-auto mb-8"
-            />
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="w-20 h-20 mx-auto mb-8"
+            >
+              <img 
+                src="/src/assets/dermaeco-logo.png" 
+                alt="DermaEco" 
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

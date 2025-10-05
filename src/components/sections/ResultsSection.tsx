@@ -204,7 +204,7 @@ export function ResultsSection({
           >
             <Card>
               <CardHeader>
-                <CardTitle>{t('results.detailed')}</CardTitle>
+                <CardTitle>Detailed Analysis (lower score is better)</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

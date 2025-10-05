@@ -2,3 +2,6 @@ project_id = "mohohrmgveheqftcrzzd"
 
 [functions.analyze-skin]
 verify_jwt = false
+
+[functions.photo-upload]
+verify_jwt = true

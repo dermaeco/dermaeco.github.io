@@ -1,105 +1,407 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+* {
+  box-sizing: border-box;
+}
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+body {
+  font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--wabi-cream);
+  color: var(--wabi-obsidian);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+/* The Row inspired luxury design system */
+:root {
+  /* Luxury earth tone palette - no red, blue, green */
+  --wabi-cream: #fefcf9;
+  --wabi-ivory: #faf8f5;
+  --wabi-pearl: #f5f3f0;
+  --wabi-linen: #efede8;
+  --wabi-sand: #e8e4dd;
+  --wabi-stone: #ddd7ce;
+  --wabi-taupe: #c9c1b6;
+  --wabi-mushroom: #a69b8e;
+  --wabi-charcoal: #6b6258;
+  --wabi-earth: #4a3f36;
+  --wabi-obsidian: #2d2520;
+  
+  /* Legacy warm colors updated to earth tones */
+  --warm-50: #fefcf9;
+  --warm-100: #faf8f5;
+  --warm-200: #f5f3f0;
+  --warm-300: #efede8;
+  --warm-400: #e8e4dd;
+  --warm-500: #ddd7ce;
+  --warm-600: #c9c1b6;
+  --warm-700: #a69b8e;
+  --warm-800: #6b6258;
+  --warm-900: #4a3f36;
+  --warm-950: #2d2520;
+}
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+/* Utility classes - The Row inspired spacing */
+.wabi-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+@media (max-width: 768px) {
+  .wabi-container {
+    padding: 0 1.5rem;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@media (max-width: 640px) {
+  .wabi-container {
+    padding: 0 1rem;
   }
+}
 
-  body {
-    @apply bg-background text-foreground;
+/* Input field styling */
+.wabi-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--wabi-stone);
+  background-color: var(--wabi-ivory);
+  border-radius: 8px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--wabi-obsidian);
+  transition: all 200ms ease;
+  outline: none;
+  box-sizing: border-box;
+  display: block;
+}
+
+/* Input with icon - ensure proper left padding */
+.wabi-input.pl-10 {
+  padding-left: 2.5rem !important;
+}
+
+.wabi-input:focus {
+  border-color: var(--wabi-charcoal);
+  background-color: var(--wabi-cream);
+  box-shadow: 0 0 0 2px rgba(201, 193, 182, 0.3);
+}
+
+.wabi-input::placeholder {
+  color: var(--wabi-mushroom);
+}
+
+.wabi-input:hover {
+  border-color: var(--wabi-taupe);
+  background-color: var(--wabi-pearl);
+}
+
+/* Luxury typography scale */
+.text-luxury-xs { font-size: 0.75rem; line-height: 1.2; }
+.text-luxury-sm { font-size: 0.875rem; line-height: 1.3; }
+.text-luxury-base { font-size: 1rem; line-height: 1.4; }
+.text-luxury-lg { font-size: 1.125rem; line-height: 1.5; }
+.text-luxury-xl { font-size: 1.25rem; line-height: 1.5; }
+.text-luxury-2xl { font-size: 1.5rem; line-height: 1.4; }
+.text-luxury-3xl { font-size: 1.875rem; line-height: 1.3; }
+.text-luxury-4xl { font-size: 2.25rem; line-height: 1.2; }
+.text-luxury-5xl { font-size: 3rem; line-height: 1.1; }
+
+/* Wabi-sabi section styling */
+.wabi-section {
+  padding: 4rem 0;
+  background: var(--wabi-cream);
+}
+
+.wabi-hero {
+  padding: 8rem 0 12rem;
+  background: var(--wabi-cream);
+  position: relative;
+  min-height: 100vh;
+}
+
+.wabi-hero-image {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.wabi-hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 1024px) {
+  .wabi-hero {
+    padding: 6rem 0 8rem;
+    min-height: auto;
   }
+  
+  .wabi-hero-image {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wabi-hero {
+    padding: 4rem 0 6rem;
+  }
+  
+  .wabi-hero-image {
+    max-width: 500px;
+  }
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Luxury scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--wabi-pearl);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--wabi-taupe);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--wabi-mushroom);
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Focus styles */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50;
+}
+
+/* Luxury button styling */
+.btn-primary {
+  background: var(--wabi-obsidian);
+  color: var(--wabi-cream);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  transition: all 300ms ease;
+  border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+  background: var(--wabi-earth);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(45, 37, 32, 0.15);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--wabi-obsidian);
+  border: 1px solid var(--wabi-taupe);
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  transition: all 300ms ease;
+}
+
+.btn-secondary:hover {
+  background: var(--wabi-pearl);
+  border-color: var(--wabi-mushroom);
+  transform: translateY(-1px);
+}
+
+/* Glass effect */
+.glass {
+  backdrop-filter: blur(20px);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Card hover effects */
+.card-hover {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #1c1917 0%, #57534e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Luxury shadows - subtle and sophisticated */
+.shadow-luxury {
+  box-shadow: 0 2px 20px rgba(45, 37, 32, 0.08), 0 1px 4px rgba(45, 37, 32, 0.04);
+}
+
+.shadow-luxury-lg {
+  box-shadow: 0 8px 40px rgba(45, 37, 32, 0.12), 0 2px 8px rgba(45, 37, 32, 0.06);
+}
+
+.shadow-soft {
+  box-shadow: 0 2px 12px rgba(45, 37, 32, 0.06), 0 1px 3px rgba(45, 37, 32, 0.04);
+}
+
+.shadow-softer {
+  box-shadow: 0 4px 20px rgba(45, 37, 32, 0.08), 0 2px 6px rgba(45, 37, 32, 0.04);
+}
+
+/* Loading states */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .mobile-full {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .btn-primary {
+    border: 2px solid var(--wabi-obsidian);
+  }
+  
+  .btn-secondary {
+    border: 2px solid var(--wabi-obsidian);
+  }
+}
+
+/* Global typography enforcement */
+* {
+  font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Quicksand', sans-serif !important;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+p, span, div, button, input, textarea, label {
+  font-family: 'Quicksand', sans-serif !important;
+}
+
+/* Luxury card styling */
+.luxury-card {
+  background: var(--wabi-ivory);
+  border: 1px solid var(--wabi-linen);
+  border-radius: 0;
+  transition: all 400ms ease;
+}
+
+.luxury-card:hover {
+  background: var(--wabi-pearl);
+  border-color: var(--wabi-sand);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(45, 37, 32, 0.1);
 }

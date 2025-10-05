@@ -15,8 +15,8 @@ import { UploadSection } from '@/components/sections/UploadSection'
 import { QuestionnaireSection } from '@/components/sections/QuestionnaireSection'
 import { ResultsSection } from '@/components/sections/ResultsSection'
 import { ProductsSection } from '@/components/sections/ProductsSection'
-// import { CommunitySection } from '@/components/sections/CommunitySection'
-// import { MySkinJourneySection } from '@/components/sections/MySkinJourneySection'
+import { CommunitySection } from '@/components/sections/CommunitySection'
+import { MySkinJourneySection } from '@/components/sections/MySkinJourneySection'
 import { OurVisionSection } from '@/components/sections/OurVisionSection'
 import { ProfileSection } from '@/components/sections/ProfileSection'
 import { ComparisonSection } from '@/components/sections/ComparisonSection'
@@ -301,7 +301,6 @@ function AppContent() {
           )}
           
           {/* New Feature Sections */}
-          {/* Temporarily disabled - requires database tables
           {currentSection === 'community' && (
             <motion.div
               key="community"
@@ -314,12 +313,12 @@ function AppContent() {
                 onCreateDiary={handleCreateDiary}
                 onApplyInfluencer={handleApplyInfluencer}
                 onViewProduct={handleViewProduct}
+                onBack={() => setCurrentSection('home')}
               />
             </motion.div>
           )}
-          */}
           
-          {/* Temporarily disabled - requires database tables
+          
           {currentSection === 'my-skin-journey' && (
             <motion.div
               key="my-skin-journey"
@@ -334,10 +333,10 @@ function AppContent() {
                 onAddProduct={handleAddProduct}
                 onViewProduct={handleViewProduct}
                 onViewFullRoutine={handleViewFullRoutine}
+                onBack={() => setCurrentSection('home')}
               />
             </motion.div>
           )}
-          */}
           
           {currentSection === 'our-vision' && (
             <motion.div
@@ -369,8 +368,7 @@ function AppContent() {
             </motion.div>
           )}
 
-          {/* Dropdown Navigation Sections - Temporarily disabled */}
-          {/* These sections require database tables that haven't been created yet
+          {/* Dropdown Navigation Sections */}
           {currentSection === 'smart-routine' && (
             <motion.div
               key="smart-routine"
@@ -386,6 +384,7 @@ function AppContent() {
                 onViewProduct={handleViewProduct}
                 onViewFullRoutine={handleViewFullRoutine}
                 initialTab="routine"
+                onBack={() => setCurrentSection('home')}
               />
             </motion.div>
           )}
@@ -405,6 +404,7 @@ function AppContent() {
                 onViewProduct={handleViewProduct}
                 onViewFullRoutine={handleViewFullRoutine}
                 initialTab="library"
+                onBack={() => setCurrentSection('home')}
               />
             </motion.div>
           )}
@@ -424,6 +424,7 @@ function AppContent() {
                 onViewProduct={handleViewProduct}
                 onViewFullRoutine={handleViewFullRoutine}
                 initialTab="reminders"
+                onBack={() => setCurrentSection('home')}
               />
             </motion.div>
           )}
@@ -441,10 +442,10 @@ function AppContent() {
                 onApplyInfluencer={handleApplyInfluencer}
                 onViewProduct={handleViewProduct}
                 initialTab={currentSection === 'skincare-diaries' ? 'diaries' : 'trending'}
+                onBack={() => setCurrentSection('home')}
               />
             </motion.div>
           )}
-          */}
 
           {/* Profile Section */}
           {currentSection === 'profile' && (

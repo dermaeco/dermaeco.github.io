@@ -189,18 +189,18 @@ export function ResultsSection({
               <h2 className="text-3xl md:text-4xl font-serif font-semibold text-stone-900 mb-4">
                 {t('results.title')}
               </h2>
-              <p className="text-lg text-stone-600">Powered by advanced AI analysis</p>
+              <p className="text-lg text-stone-600">{t('results.powered_by')}</p>
             </div>
             
             {/* Share and Export Buttons */}
             <div className="flex justify-center gap-3">
               <Button onClick={handleShare} variant="outline" size="sm">
                 <Share2 className="w-4 h-4 mr-2" />
-                Share Results
+                {t('results.share_results')}
               </Button>
               <Button onClick={handleExport} variant="outline" size="sm">
                 <Download className="w-4 h-4 mr-2" />
-                Export Data
+                {t('results.export_data')}
               </Button>
             </div>
           </div>
@@ -227,7 +227,7 @@ export function ResultsSection({
                 {/* Overall Health */}
                 <div className="text-center">
                   <h3 className="text-lg font-serif font-semibold text-stone-900 mb-4">
-                    Overall Skin Health
+                    {t('results.overall_health')}
                   </h3>
                   <div className="mb-4">
                     <p className={`text-2xl font-bold mb-2 ${
@@ -236,7 +236,10 @@ export function ResultsSection({
                       analysis.overall_level === 'Fair' ? 'text-orange-600' :
                       'text-red-600'
                     }`}>
-                      {analysis.overall_level || 'N/A'}
+                      {analysis.overall_level === 'Excellent' ? t('results.score_excellent') :
+                       analysis.overall_level === 'Good' ? t('results.score_good') :
+                       analysis.overall_level === 'Fair' ? t('results.score_fair') :
+                       analysis.overall_level || 'N/A'}
                     </p>
                     <p className="text-sm text-stone-600 text-left px-2">
                       {analysis.overall_summary || 'Analysis summary not available'}
@@ -258,7 +261,7 @@ export function ResultsSection({
                     <div className="flex justify-between items-center">
                       <span className="text-stone-600">{t('results.skin_age')}:</span>
                       <span className="font-medium text-stone-900">
-                        {analysis.skin_age_estimate} years
+                        {analysis.skin_age_estimate} {t('results.years')}
                       </span>
                     </div>
                   )}
@@ -276,7 +279,7 @@ export function ResultsSection({
           >
             <Card>
               <CardHeader>
-                <CardTitle>Detailed Analysis (lower score is better)</CardTitle>
+                <CardTitle>{t('results.detailed_analysis')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -321,7 +324,10 @@ export function ResultsSection({
                         <p className={`text-sm mt-2 ${
                           getScoreColor(category.score || 5)
                         }`}>
-                          {getScoreLabel(category.score || 5)}
+                          {category.score && category.score <= 3 ? t('results.score_excellent') :
+                           category.score && category.score <= 5 ? t('results.score_good') :
+                           category.score && category.score <= 7 ? t('results.score_fair') :
+                           t('results.score_needs_attention')}
                         </p>
                       </motion.div>
                     )
@@ -338,7 +344,7 @@ export function ResultsSection({
                   <CardHeader>
                     <div className="flex items-center space-x-2">
                       <Heart className="w-5 h-5 text-emerald-600" />
-                      <CardTitle className="text-lg">Strengths</CardTitle>
+                      <CardTitle className="text-lg">{t('results.strengths')}</CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -360,7 +366,7 @@ export function ResultsSection({
                   <CardHeader>
                     <div className="flex items-center space-x-2">
                       <TrendingUp className="w-5 h-5 text-amber-600" />
-                      <CardTitle className="text-lg">Areas for Improvement</CardTitle>
+                      <CardTitle className="text-lg">{t('results.areas_improvement')}</CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent>
@@ -391,7 +397,7 @@ export function ResultsSection({
               <CardHeader>
                 <div className="flex items-center space-x-2">
                   <Brain className="w-6 h-6 text-gray-600" />
-                  <CardTitle>AI Recommendations</CardTitle>
+                  <CardTitle>{t('results.ai_recommendations')}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
@@ -412,7 +418,7 @@ export function ResultsSection({
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                   <Button variant="secondary" onClick={onStartOver}>
-                    New Analysis
+                    {t('results.new_analysis')}
                   </Button>
                 </div>
               </CardContent>

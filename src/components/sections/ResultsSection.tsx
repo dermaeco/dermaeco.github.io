@@ -39,6 +39,21 @@ export function ResultsSection({
 }: ResultsSectionProps) {
   const { t } = useTranslation()
   
+  // Helper function to translate demo keys
+  const translateIfKey = (text: string): string => {
+    if (!text) return text
+    // Check if it's a demo translation key
+    if (text.startsWith('demo.')) {
+      // Handle keys with parameters (e.g., "demo.sleep_factor|8")
+      if (text.includes('|')) {
+        const [key, value] = text.split('|')
+        return t(key, { hours: value, level: value, type: value })
+      }
+      return t(text)
+    }
+    return text
+  }
+  
   if (!results) {
     return (
       <section className="wabi-section">
@@ -242,7 +257,7 @@ export function ResultsSection({
                        analysis.overall_level || 'N/A'}
                     </p>
                     <p className="text-sm text-stone-600 text-left px-2">
-                      {analysis.overall_summary || 'Analysis summary not available'}
+                      {translateIfKey(analysis.overall_summary) || 'Analysis summary not available'}
                     </p>
                   </div>
                 </div>
@@ -352,7 +367,7 @@ export function ResultsSection({
                       {detailed.strengths.map((strength, index) => (
                         <li key={index} className="flex items-start space-x-2">
                           <span className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0" />
-                          <span className="text-stone-700">{strength}</span>
+                          <span className="text-stone-700">{translateIfKey(strength)}</span>
                         </li>
                       ))}
                     </ul>
@@ -374,7 +389,7 @@ export function ResultsSection({
                       {detailed.concerns.map((concern, index) => (
                         <li key={index} className="flex items-start space-x-2">
                           <span className="w-2 h-2 bg-amber-500 rounded-full mt-2 flex-shrink-0" />
-                          <span className="text-stone-700">{concern}</span>
+                          <span className="text-stone-700">{translateIfKey(concern)}</span>
                         </li>
                       ))}
                     </ul>
@@ -407,7 +422,7 @@ export function ResultsSection({
                       <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-gray-600 text-sm font-medium">{index + 1}</span>
                       </div>
-                      <p className="text-stone-700">{recommendation}</p>
+                      <p className="text-stone-700">{translateIfKey(recommendation)}</p>
                     </div>
                   ))}
                 </div>

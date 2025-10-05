@@ -90,6 +90,7 @@ export function useSkinAnalysis() {
         
         const demoResults = {
           analysis_id: 'demo-' + Date.now(),
+          is_demo: true, // Flag to indicate this is demo data
           analysis: {
             wrinkles_score: 2,  // 2/10 = minimal wrinkles (Excellent)
             spots_score: 5,     // 5/10 = some dark spots (Good)
@@ -103,33 +104,33 @@ export function useSkinAnalysis() {
             skin_age_estimate: 32,
             skin_type: 'combination',
             overall_level: 'Good',
-            overall_summary: t('demo.overall_summary')
+            overall_summary: 'demo.overall_summary' // Store translation key
           },
           detailed_analysis: {
             strengths: [
-              t('demo.strength1'),
-              t('demo.strength2'),
-              t('demo.strength3')
+              'demo.strength1',
+              'demo.strength2',
+              'demo.strength3'
             ],
             concerns: [
-              t('demo.concern1'),
-              t('demo.concern2'),
-              t('demo.concern3')
+              'demo.concern1',
+              'demo.concern2',
+              'demo.concern3'
             ],
             recommendations: [
-              t('demo.recommendation1'),
-              t('demo.recommendation2'),
-              t('demo.recommendation3'),
-              t('demo.recommendation4'),
-              t('demo.recommendation5')
+              'demo.recommendation1',
+              'demo.recommendation2',
+              'demo.recommendation3',
+              'demo.recommendation4',
+              'demo.recommendation5'
             ]
           },
-          lifestyle_impact: {
-            sleep_factor: questionnaire?.sleep_hours ? t('demo.sleep_factor', { hours: questionnaire.sleep_hours }) : t('demo.sleep_generic'),
-            stress_factor: questionnaire?.stress_level ? t('demo.stress_factor', { level: questionnaire.stress_level }) : t('demo.stress_generic'),
-            diet_factor: questionnaire?.diet_type ? t('demo.diet_factor', { type: questionnaire.diet_type }) : t('demo.diet_generic')
-          },
-          processing_time: t('demo.processing_complete')
+          lifestyle_impact: questionnaire ? {
+            sleep_factor: questionnaire.sleep_hours ? `demo.sleep_factor|${questionnaire.sleep_hours}` : 'demo.sleep_generic',
+            stress_factor: questionnaire.stress_level ? `demo.stress_factor|${questionnaire.stress_level}` : 'demo.stress_generic',
+            diet_factor: questionnaire.diet_type ? `demo.diet_factor|${questionnaire.diet_type}` : 'demo.diet_generic'
+          } : undefined,
+          processing_time: 'demo.processing_complete'
         }
         
         setAnalysisResults(demoResults)

@@ -26,19 +26,19 @@ export function HeroSection({ onStartAnalysis }: HeroSectionProps) {
           >
             <div className="text-left lg:text-left">
               <p className="text-luxury-xs lg:text-luxury-sm text-wabi-mushroom font-light tracking-wide mb-2">
-                AI-POWERED
+                {t('hero.features.aiPowered.title')}
               </p>
               <p className="text-luxury-xs lg:text-luxury-sm text-wabi-charcoal leading-relaxed font-light">
-                Advanced computer vision technology for accurate skin assessment
+                {t('hero.features.aiPowered.description')}
               </p>
             </div>
             
             <div className="text-left lg:text-left">
               <p className="text-luxury-xs lg:text-luxury-sm text-wabi-mushroom font-light tracking-wide mb-2">
-                TRUSTED RECOMMENDATIONS
+                {t('hero.features.trusted.title')}
               </p>
               <p className="text-luxury-xs lg:text-luxury-sm text-wabi-charcoal leading-relaxed font-light">
-                Unbiased recommendations from premium, trustworthy brands
+                {t('hero.features.trusted.description')}
               </p>
             </div>
           </motion.div>
@@ -53,11 +53,11 @@ export function HeroSection({ onStartAnalysis }: HeroSectionProps) {
             {/* Enhanced headline with properly sized titles */}
             <div className="space-y-6 lg:space-y-8">
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-light text-wabi-obsidian leading-[0.9] tracking-tight">
-                Discover Your Skin's True Potential
+                {t('hero.title')}
               </h1>
               
               <p className="text-sm md:text-base lg:text-lg text-wabi-charcoal font-light leading-relaxed max-w-2xl mx-auto">
-                Cutting-edge AI-powered skin analysis with personalized skincare recommendations
+                {t('hero.subtitle')}
               </p>
             </div>
             
@@ -102,20 +102,20 @@ export function HeroSection({ onStartAnalysis }: HeroSectionProps) {
             {/* New Science Focus Section */}
             <div className="space-y-3 lg:space-y-4">
               <p className="text-luxury-xs lg:text-luxury-sm text-wabi-mushroom font-light tracking-wide mb-2">
-                EVIDENCE-BASED
+                {t('hero.features.evidenceBased.title')}
               </p>
               <p className="text-luxury-xs lg:text-luxury-sm text-wabi-charcoal leading-relaxed font-light">
-                Scientifically-backed analysis with environmentally conscious recommendations for sustainable beauty
+                {t('hero.features.evidenceBased.description')}
               </p>
             </div>
             
             {/* GDPR Compliance */}
             <div className="space-y-3 lg:space-y-4">
               <p className="text-luxury-xs lg:text-luxury-sm text-wabi-mushroom font-light tracking-wide mb-2">
-                GDPR COMPLIANT
+                {t('hero.features.gdpr.title')}
               </p>
               <p className="text-luxury-xs lg:text-luxury-sm text-wabi-charcoal leading-relaxed font-light">
-                Your privacy and data security are our top priorities
+                {t('hero.features.gdpr.description')}
               </p>
             </div>
           </motion.div>

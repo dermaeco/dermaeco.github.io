@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
@@ -22,6 +23,7 @@ interface ComparisonSectionProps {
 }
 
 export function ComparisonSection({ onBack }: ComparisonSectionProps) {
+  const { t } = useTranslation()
   const { user } = useAuth()
   const [analyses, setAnalyses] = useState<Analysis[]>([])
   const [analysis1, setAnalysis1] = useState<Analysis | null>(null)
@@ -99,12 +101,12 @@ export function ComparisonSection({ onBack }: ComparisonSectionProps) {
         <div className="wabi-container max-w-4xl">
           <div className="text-center py-12">
             <h2 className="text-2xl font-serif font-semibold text-stone-900 mb-4">
-              Sign In Required
+              {t('comparison.signInRequired')}
             </h2>
             <p className="text-stone-600 mb-6">
-              Please sign in to compare your analyses
+              {t('comparison.signInMessage')}
             </p>
-            <Button onClick={onBack}>Go Back</Button>
+            <Button onClick={onBack}>{t('common.goBack')}</Button>
           </div>
         </div>
       </section>
@@ -117,7 +119,7 @@ export function ComparisonSection({ onBack }: ComparisonSectionProps) {
         <div className="wabi-container max-w-6xl">
           <div className="text-center py-12">
             <div className="animate-spin w-8 h-8 border-4 border-gray-200 border-t-stone-900 rounded-full mx-auto mb-4" />
-            <p className="text-stone-600">Loading analyses...</p>
+            <p className="text-stone-600">{t('comparison.loading')}</p>
           </div>
         </div>
       </section>
@@ -134,10 +136,10 @@ export function ComparisonSection({ onBack }: ComparisonSectionProps) {
           </Button>
           <div className="text-center py-12">
             <h2 className="text-2xl font-serif font-semibold text-stone-900 mb-4">
-              Not Enough Analyses
+              {t('comparison.notEnough')}
             </h2>
             <p className="text-stone-600 mb-6">
-              You need at least 2 skin analyses to compare. Complete more analyses to track your progress!
+              {t('comparison.notEnoughMessage')}
             </p>
           </div>
         </div>
@@ -171,15 +173,15 @@ export function ComparisonSection({ onBack }: ComparisonSectionProps) {
           </Button>
 
           <h1 className="text-3xl md:text-4xl font-serif font-semibold text-stone-900 mb-2">
-            Compare Analyses
+            {t('comparison.title')}
           </h1>
-          <p className="text-stone-600 mb-8">Track your skin's progress over time</p>
+          <p className="text-stone-600 mb-8">{t('comparison.subtitle')}</p>
 
           {/* Analysis Selectors */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Before (Older Analysis)</CardTitle>
+                <CardTitle className="text-base">{t('comparison.before')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <Select
@@ -205,7 +207,7 @@ export function ComparisonSection({ onBack }: ComparisonSectionProps) {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">After (Newer Analysis)</CardTitle>
+                <CardTitle className="text-base">{t('comparison.after')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <Select
@@ -235,7 +237,7 @@ export function ComparisonSection({ onBack }: ComparisonSectionProps) {
               {/* Images Comparison */}
               <Card className="mb-8">
                 <CardHeader>
-                  <CardTitle>Visual Comparison</CardTitle>
+                  <CardTitle>{t('comparison.visualComparison')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -270,7 +272,7 @@ export function ComparisonSection({ onBack }: ComparisonSectionProps) {
               {/* Metrics Comparison */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Detailed Metrics Comparison</CardTitle>
+                  <CardTitle>{t('comparison.metricsComparison')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">

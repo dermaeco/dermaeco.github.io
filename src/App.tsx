@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
 import { motion, AnimatePresence } from 'framer-motion'
-import logo from '@/assets/dermaeco-logo-new.png'
+import logo from '@/assets/dermaeco-logo.png'
 
 // Context and i18n
 import { AuthProvider, useAuth } from '@/contexts/AuthContext'

@@ -61,23 +61,21 @@ export function ResultsSection({
     return text
   }
   
-  // Check loading state FIRST before checking for results
-  if (isLoading) {
+  // Show loading indicator if analyzing but still render results if available
+  const showLoadingIndicator = isLoading && !results
+  
+  if (showLoadingIndicator) {
     return (
       <section className="wabi-section">
         <div className="wabi-container max-w-4xl">
           <div className="text-center py-20">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="w-20 h-20 mx-auto mb-8"
-            >
+            <div className="w-20 h-20 mx-auto mb-8">
               <img 
-                src="/src/assets/dermaeco-logo.png" 
+                src="/src/assets/dermaeco-logo-new.png" 
                 alt="DermaEco" 
                 className="w-full h-full object-contain"
               />
-            </motion.div>
+            </div>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

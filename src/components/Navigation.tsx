@@ -5,8 +5,9 @@ import { Button } from '@/components/ui/button'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { AuthModal } from '@/components/AuthModal'
 import { useGuestMode } from '@/hooks/useGuestMode'
-import { User, Shield, Camera, Home, Users, Lightbulb, Package, Bell, Menu, X, ChevronDown, Calendar, Clock, Heart, Zap, Leaf } from 'lucide-react'
+import { User, Shield, Camera, Home, Users, Lightbulb, Package, Bell, Menu, X, ChevronDown, Calendar, Clock, Heart, Zap } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import logo from '@/assets/dermaeco-logo-new.png'
 
 interface NavigationProps {
   currentSection?: string
@@ -69,7 +70,7 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
               className="flex items-center cursor-pointer gap-2"
               onClick={() => handleSectionClick('home')}
             >
-              <Leaf className="w-8 h-8 text-emerald-600" />
+              <img src={logo} alt="DermaEco Logo" className="w-8 h-8" />
               <span className="text-2xl font-light text-wabi-obsidian tracking-tight">Derma Eco</span>
             </div>
             

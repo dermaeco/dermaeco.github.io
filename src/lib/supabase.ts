@@ -1,5 +1,18 @@
-// Re-export the Supabase client from the auto-generated file
-export { supabase } from '@/integrations/supabase/client'
+// Wrapper for Supabase client with environment variable fallbacks
+// This ensures the client works even if Vite hasn't loaded .env yet
+import { createClient } from '@supabase/supabase-js'
+import type { Database } from '@/integrations/supabase/types'
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://mohohrmgveheqftcrzzd.supabase.co'
+const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1vaG9ocm1ndmVoZXFmdGNyenpkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk2MTIwMzQsImV4cCI6MjA3NTE4ODAzNH0._ONuokezNHHq4D_0wkWBLH3_b7Cbw8Co1FTxcomS9kk'
+
+export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+  auth: {
+    storage: localStorage,
+    persistSession: true,
+    autoRefreshToken: true,
+  }
+})
 
 // Database types
 export interface Profile {

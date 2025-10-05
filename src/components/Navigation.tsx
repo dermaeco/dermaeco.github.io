@@ -31,8 +31,8 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
       icon: Users,
       hasDropdown: true,
       dropdownItems: [
-        { key: 'skincare-diaries', label: 'Skincare Diaries', icon: Heart },
-        { key: 'trending', label: 'Trending', icon: Zap },
+        { key: 'skincare-diaries', label: t('community.skincare_diaries'), icon: Heart },
+        { key: 'trending', label: t('community.trending'), icon: Zap },
       ]
     },
     {
@@ -41,9 +41,9 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
       icon: Lightbulb,
       hasDropdown: true,
       dropdownItems: [
-        { key: 'smart-routine', label: 'Smart Routine', icon: Calendar },
-        { key: 'product-library', label: 'Product Library', icon: Package },
-        { key: 'reminders', label: 'Reminders', icon: Bell },
+        { key: 'smart-routine', label: t('routine.smart_routine'), icon: Calendar },
+        { key: 'product-library', label: t('library.product_library'), icon: Package },
+        { key: 'reminders', label: t('reminders.title'), icon: Bell },
       ]
     },
     { key: 'our-vision', label: t('nav.our_vision'), icon: Shield },

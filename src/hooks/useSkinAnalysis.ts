@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useGuestMode } from '@/hooks/useGuestMode'
-import { supabase } from '@/lib/supabase'
+import { supabase } from '@/integrations/supabase/client'
 import { AnalysisResults } from '@/types'
 import toast from 'react-hot-toast'
 
@@ -161,12 +161,12 @@ export function useSkinAnalysis() {
         try {
           const { error: saveError } = await supabase
             .from('skin_analyses')
-            .insert({
+            .insert([{
               user_id: user.id,
               image_url: imageUrl,
-              analysis_data: results,
-              questionnaire_data: questionnaire
-            })
+              analysis_data: results as any,
+              questionnaire_data: questionnaire as any
+            }])
 
           if (saveError) {
             console.error('Error saving analysis:', saveError)
@@ -307,7 +307,7 @@ export function useSkinAnalysis() {
 
       // Set the loaded analysis as current
       setUploadedImageUrl(data.image_url)
-      setAnalysisResults(data.analysis_data as AnalysisResults)
+      setAnalysisResults(data.analysis_data as any as AnalysisResults)
       setCurrentAnalysisId(data.id)
 
       return data

@@ -641,6 +641,230 @@ const resources = {
       'library.my_products': 'Mes produits',
       'library.favorites': 'Favoris',
     }
+  },
+  zh: {
+    translation: {
+      // Navigation
+      'nav.home': '首页',
+      'nav.analysis': '皮肤分析',
+      'nav.profile': '个人资料',
+      'nav.privacy': '隐私设置',
+      'nav.community': '社区',
+      'nav.my_skin_journey': '我的护肤之旅',
+      'nav.our_vision': '我们的愿景',
+      'nav.smart_routine': '智能护理',
+      'nav.product_library': '产品库',
+      'nav.reminders': '提醒',
+      'nav.influencer': '影响者',
+      
+      // Common
+      'common.loading': '加载中...',
+      'common.error': '错误',
+      'common.success': '成功',
+      'common.cancel': '取消',
+      'common.save': '保存',
+      'common.continue': '继续',
+      'common.back': '返回',
+      'common.next': '下一步',
+      'common.finish': '完成',
+      'common.email': '电子邮件',
+      'common.password': '密码',
+      'common.signin': '登录',
+      'common.signup': '注册',
+      'common.signout': '退出',
+      'common.user': '用户',
+      'common.guest_mode': '访客模式',
+      
+      // Toast messages
+      'toast.analysis_failed': '分析失败，请重试',
+      'toast.diary_feature_development': '护肤日记功能正在开发中...',
+      'toast.influencer_application_submitted': '影响者申请已提交，我们将在3-5个工作日内审核',
+      'toast.add_product_development': '添加产品功能正在开发中...',
+      'toast.reminder_creation_development': '创建提醒功能正在开发中...',
+      'toast.view_product_details': '查看产品详情',
+      'toast.edit_reminder': '编辑提醒',
+      'toast.view_full_routine': '查看完整护理流程',
+      
+      // Hero Section
+      'hero.title': '发现您肌肤的真正潜力',
+      'hero.subtitle': '先进的AI驱动皮肤分析，提供个性化的欧洲护肤品推荐',
+      'hero.cta': '开始免费分析',
+      'hero.gdpr': 'GDPR合规 • 您的数据受到保护',
+      
+      // Upload Section
+      'upload.title': '上传照片',
+      'upload.subtitle': '拍摄一张清晰、光线充足的自拍照以获得最准确的分析',
+      'upload.guidelines': '最佳效果指南：',
+      'upload.guideline1': '优选自然光',
+      'upload.guideline2': '面部清晰可见',
+      'upload.guideline3': '如可能请卸妆',
+      'upload.guideline4': '直视相机',
+      'upload.drag': '将照片拖放到此处，或点击选择',
+      'upload.formats': '支持格式：JPEG、PNG、WebP（最大10MB）',
+      'upload.uploading': '上传中...',
+      'upload.success': '照片上传成功',
+      'upload.error': '上传失败，请重试',
+      
+      // Questionnaire
+      'questionnaire.title': '告诉我们您的生活方式',
+      'questionnaire.subtitle': '帮助我们提供更个性化的推荐',
+      'questionnaire.sleep': '您每晚睡眠多少小时？',
+      'questionnaire.stress': '评估您的压力水平（1-10）',
+      'questionnaire.diet': '您的饮食类型是什么？',
+      'questionnaire.exercise': '您多久运动一次？',
+      'questionnaire.skincare': '当前护肤流程',
+      'questionnaire.concerns': '主要皮肤问题',
+      'questionnaire.smoking': '吸烟状况',
+      'questionnaire.alcohol': '饮酒情况',
+      'questionnaire.environment': '环境因素',
+      'questionnaire.submit': '完成分析',
+      
+      // Diet options
+      'diet.balanced': '均衡',
+      'diet.vegetarian': '素食',
+      'diet.vegan': '纯素',
+      'diet.mediterranean': '地中海',
+      'diet.keto': '生酮',
+      'diet.other': '其他',
+      
+      // Exercise options
+      'exercise.daily': '每天',
+      'exercise.weekly': '每周3-4次',
+      'exercise.occasional': '偶尔',
+      'exercise.rarely': '很少',
+      'exercise.never': '从不',
+      
+      // Smoking options
+      'smoking.never': '从不',
+      'smoking.former': '曾经吸烟',
+      'smoking.occasional': '偶尔',
+      'smoking.regular': '经常',
+      
+      // Alcohol options
+      'alcohol.none': '不饮酒',
+      'alcohol.occasional': '偶尔',
+      'alcohol.moderate': '适度',
+      'alcohol.frequent': '频繁',
+      
+      // Skin concerns
+      'concerns.wrinkles': '皱纹',
+      'concerns.spots': '色斑',
+      'concerns.acne': '痘痘',
+      'concerns.dryness': '干燥',
+      'concerns.oiliness': '油性',
+      'concerns.sensitivity': '敏感',
+      'concerns.pores': '毛孔粗大',
+      'concerns.redness': '泛红',
+      'concerns.dark_circles': '黑眼圈',
+      
+      // Results
+      'results.title': '您的皮肤分析结果',
+      'results.processing': '正在分析您的皮肤...',
+      'results.overall_score': '整体皮肤健康评分',
+      'results.skin_type': '皮肤类型',
+      'results.skin_age': '估计皮肤年龄',
+      'results.recommendations': '个性化推荐',
+      'results.detailed': '详细分析',
+      
+      // Skin types
+      'skin_type.dry': '干性',
+      'skin_type.oily': '油性',
+      'skin_type.combination': '混合性',
+      'skin_type.normal': '中性',
+      'skin_type.sensitive': '敏感性',
+      
+      // Analysis categories
+      'analysis.wrinkles': '皱纹和细纹',
+      'analysis.spots': '色斑',
+      'analysis.acne': '痘痘和瑕疵',
+      'analysis.texture': '肌理不均',
+      'analysis.hydration': '干燥',
+      'analysis.sebum': '油脂分泌',
+      'analysis.pores': '毛孔可见度',
+      'analysis.redness': '泛红',
+      'analysis.dark_circles': '黑眼圈',
+      
+      // Products
+      'products.title': '推荐产品',
+      'products.subtitle': '为您的皮肤类型精选的欧洲护肤品',
+      'products.price_from': '起价',
+      'products.view_details': '查看详情',
+      'products.add_favorite': '添加到收藏',
+      'products.buy_now': '立即购买',
+      'products.ingredients': '关键成分',
+      'products.benefits': '功效',
+      'products.suitable_for': '适用于',
+      
+      // Privacy
+      'privacy.title': '隐私和数据设置',
+      'privacy.gdpr_notice': '根据GDPR规定，您可以完全控制自己的数据',
+      'privacy.consent_title': '数据处理同意',
+      'privacy.consent_desc': '允许处理面部图像进行皮肤分析',
+      'privacy.marketing_title': '营销通信',
+      'privacy.marketing_desc': '接收个性化护肤提示和产品更新',
+      'privacy.analytics_title': '分析',
+      'privacy.analytics_desc': '通过匿名使用数据帮助我们改进服务',
+      'privacy.export_data': '导出我的数据',
+      'privacy.delete_account': '删除账户',
+      'privacy.data_retention': '数据保留',
+      'privacy.retention_standard': '标准（2年）',
+      'privacy.retention_minimal': '最小（6个月）',
+      'privacy.retention_extended': '扩展（5年）',
+      
+      // Our Vision Page
+      'vision.title': '我们的愿景',
+      'vision.subtitle': '通过AI创新改变护肤',
+      'vision.business_assumptions': '商业假设',
+      'vision.assumption1_title': '基于天气的个性化价值',
+      'vision.assumption1_desc': '我们相信，响应天气的护肤推荐比通用护理提供更多价值，在个性化方面创造竞争优势',
+      'vision.assumption2_title': '数据变现可行性',
+      'vision.assumption2_desc': '假设用户护肤数据、偏好和行为模式可通过多种渠道（联盟合作、高级洞察、定向推荐）产生可持续收入',
+      'vision.assumption3_title': 'AI美容科技市场时机',
+      'vision.assumption3_desc': '我们的市场时机假设是，消费者已准备好大规模采用AI驱动的美容解决方案，市场已达到广泛采用的最佳准备状态',
+      'vision.gdpr_compliance': 'GDPR合规',
+      'vision.gdpr_intro': '我们致力于保护您的隐私并确保遵守通用数据保护条例（GDPR）。',
+      'vision.data_protection': '数据保护原则',
+      'vision.data_protection_desc': '我们依法、公平、透明地处理个人数据。仅为特定、明确和合法的目的收集数据。',
+      'vision.user_rights': '您的权利',
+      'vision.user_rights_desc': '您有权访问、更正、删除、限制处理、数据可移植性以及反对处理您的个人数据。',
+      'vision.consent': '同意管理',
+      'vision.consent_desc': '我们获得明确的数据处理同意，并允许您随时通过隐私设置撤回同意。',
+      
+      // Community features
+      'community.title': '护肤社区',
+      'community.create_diary': '创建护肤日记',
+      'community.share_experience': '分享您的经验',
+      'community.connect': '与他人连接',
+      
+      // Smart Routine features
+      'routine.title': '智能护肤流程',
+      'routine.personalized': '个性化推荐',
+      'routine.weather_adaptive': '天气自适应护理',
+      'routine.reminders': '智能提醒',
+      
+      // Product Library
+      'library.title': '产品库',
+      'library.add_product': '添加产品',
+      'library.my_products': '我的产品',
+      'library.favorites': '收藏',
+
+      // Profile & Comparison
+      'profile.title': '我的资料',
+      'profile.account_info': '账户信息',
+      'profile.analysis_history': '分析历史',
+      'profile.compare': '比较分析',
+      'profile.view_analysis': '查看分析',
+      'profile.delete_analysis': '删除分析',
+      'compare.title': '比较分析',
+      'compare.subtitle': '跟踪您的皮肤进展',
+      'compare.before': '之前（较早分析）',
+      'compare.after': '之后（较新分析）',
+      'compare.visual': '视觉对比',
+      'compare.metrics': '详细指标对比',
+      'compare.better': '更好',
+      'compare.worse': '更差',
+      'compare.no_change': '无变化',
+    }
   }
 }
 

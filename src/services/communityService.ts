@@ -1,4 +1,4 @@
-import { supabase } from '@/integrations/supabase/client'
+import { supabase } from '@/lib/supabase'
 import { SkincareDiary, DiaryComment, DiaryInteraction, UserFollow } from '@/lib/supabase'
 
 export interface CommunityPost {

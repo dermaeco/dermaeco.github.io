@@ -52,6 +52,14 @@ const resources = {
       'hero.subtitle': 'Advanced AI-powered skin analysis with personalized European skincare recommendations',
       'hero.cta': 'Start Free Analysis',
       'hero.gdpr': 'GDPR Compliant • Your data is protected',
+      'hero.features.aiPowered.title': 'AI-Powered Analysis',
+      'hero.features.aiPowered.description': 'Advanced machine learning algorithms analyze your skin with clinical precision',
+      'hero.features.trusted.title': 'Trusted by Thousands',
+      'hero.features.trusted.description': 'Join our growing community of skincare enthusiasts achieving healthier skin',
+      'hero.features.evidenceBased.title': 'Evidence-Based Science',
+      'hero.features.evidenceBased.description': 'Recommendations backed by dermatological research and clinical studies',
+      'hero.features.gdpr.title': 'Privacy Protected',
+      'hero.features.gdpr.description': 'GDPR compliant with full data control and transparent processing',
       
       // Upload Section
       'upload.title': 'Upload Your Photo',
@@ -197,12 +205,15 @@ const resources = {
       'community.create_diary': 'Create Skincare Diary',
       'community.share_experience': 'Share Your Experience',
       'community.connect': 'Connect with Others',
+      'community.skincare_diaries': 'Skincare Diaries',
+      'community.trending': 'Trending Topics',
       
       // Smart Routine features
       'routine.title': 'Smart Skincare Routine',
       'routine.personalized': 'Personalized Recommendations',
       'routine.weather_adaptive': 'Weather-Adaptive Care',
       'routine.reminders': 'Smart Reminders',
+      'routine.smart_routine': 'Smart Routine',
       
       // Product Library
       'library.title': 'Product Library',
@@ -276,6 +287,14 @@ const resources = {
       'hero.subtitle': 'Fortgeschrittene KI-gestützte Hautanalyse mit personalisierten europäischen Hautpflegeempfehlungen',
       'hero.cta': 'Kostenlose Analyse starten',
       'hero.gdpr': 'DSGVO-konform • Ihre Daten sind geschützt',
+      'hero.features.aiPowered.title': 'KI-gestützte Analyse',
+      'hero.features.aiPowered.description': 'Fortschrittliche Machine-Learning-Algorithmen analysieren Ihre Haut mit klinischer Präzision',
+      'hero.features.trusted.title': 'Von Tausenden vertraut',
+      'hero.features.trusted.description': 'Schließen Sie sich unserer wachsenden Community von Hautpflege-Enthusiasten an',
+      'hero.features.evidenceBased.title': 'Evidenzbasierte Wissenschaft',
+      'hero.features.evidenceBased.description': 'Empfehlungen basierend auf dermatologischer Forschung und klinischen Studien',
+      'hero.features.gdpr.title': 'Datenschutz geschützt',
+      'hero.features.gdpr.description': 'DSGVO-konform mit voller Datenkontrolle und transparenter Verarbeitung',
       
       // Upload Section
       'upload.title': 'Foto hochladen',
@@ -421,12 +440,15 @@ const resources = {
       'community.create_diary': 'Hautpflege-Tagebuch erstellen',
       'community.share_experience': 'Teilen Sie Ihre Erfahrung',
       'community.connect': 'Mit anderen verbinden',
+      'community.skincare_diaries': 'Hautpflege-Tagebücher',
+      'community.trending': 'Trendthemen',
       
       // Smart Routine features
       'routine.title': 'Intelligente Hautpflegeroutine',
       'routine.personalized': 'Personalisierte Empfehlungen',
       'routine.weather_adaptive': 'Wetterangepasste Pflege',
       'routine.reminders': 'Intelligente Erinnerungen',
+      'routine.smart_routine': 'Intelligente Routine',
       
       // Product Library
       'library.title': 'Produktbibliothek',
@@ -628,12 +650,15 @@ const resources = {
       'community.create_diary': 'Créer un journal de soins',
       'community.share_experience': 'Partagez votre expérience',
       'community.connect': 'Connectez-vous avec d\'autres',
+      'community.skincare_diaries': 'Journaux de soins',
+      'community.trending': 'Sujets tendance',
       
       // Smart Routine features
       'routine.title': 'Routine de soins intelligente',
       'routine.personalized': 'Recommandations personnalisées',
       'routine.weather_adaptive': 'Soins adaptatifs météo',
       'routine.reminders': 'Rappels intelligents',
+      'routine.smart_routine': 'Routine intelligente',
       
       // Product Library
       'library.title': 'Bibliothèque de produits',
@@ -690,6 +715,14 @@ const resources = {
       'hero.subtitle': '由前沿AI技术驱动的皮肤分析，提供个性化的护肤品推荐',
       'hero.cta': '开始分析',
       'hero.gdpr': '隐私合规 • 保障个人数据安全',
+      'hero.features.aiPowered.title': 'AI智能分析',
+      'hero.features.aiPowered.description': '先进的机器学习算法以临床精度分析您的皮肤',
+      'hero.features.trusted.title': '数千用户信赖',
+      'hero.features.trusted.description': '加入我们不断壮大的护肤爱好者社区，获得更健康的肌肤',
+      'hero.features.evidenceBased.title': '循证科学',
+      'hero.features.evidenceBased.description': '基于皮肤学研究和临床研究的推荐',
+      'hero.features.gdpr.title': '隐私保护',
+      'hero.features.gdpr.description': 'GDPR合规，完全数据控制和透明处理',
       
       // Upload Section
       'upload.title': '上传照片',
@@ -835,12 +868,15 @@ const resources = {
       'community.create_diary': '创建护肤日记',
       'community.share_experience': '分享您的经验',
       'community.connect': '与他人连接',
+      'community.skincare_diaries': '护肤日记',
+      'community.trending': '热门话题',
       
       // Smart Routine features
       'routine.title': '智能护肤流程',
       'routine.personalized': '个性化推荐',
       'routine.weather_adaptive': '天气自适应护肤',
       'routine.reminders': '智能提醒',
+      'routine.smart_routine': '智能流程',
       
       // Product Library
       'library.title': '产品库',

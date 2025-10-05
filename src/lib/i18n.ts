@@ -1069,7 +1069,7 @@ const resources = {
       'results.share_results': '分享结果',
       'results.export_data': '导出数据',
       'results.overall_health': '整体皮肤健康',
-      'results.detailed_analysis': '详细分析（分数越低越好）',
+      'results.detailed_analysis': '详细分析（问题越少越好）',
       'results.strengths': '优势',
       'results.areas_improvement': '改善空间',
       'results.ai_recommendations': 'AI推荐',

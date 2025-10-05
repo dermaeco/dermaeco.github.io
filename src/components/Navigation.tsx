@@ -70,7 +70,7 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
               className="flex items-center cursor-pointer"
               onClick={() => handleSectionClick('home')}
             >
-              <img src={dermaEcoLogo} alt="DermaEco Logo" className="h-10 w-auto" />
+              <img src={dermaEcoLogo} alt="DermaEco Logo" className="h-14 w-auto" />
             </div>
             
             {/* Desktop Navigation Items */}

@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { 
-  Package, Bell, Calendar, Clock, Heart, Sun, Cloud, 
+  Package, Bell, Calendar, Clock, Sun, Cloud, 
   Droplets, ArrowLeft, Sparkles
 } from 'lucide-react'
 import toast from 'react-hot-toast'
@@ -25,7 +25,6 @@ export function MySkinJourneySection({
   onBack
 }: MySkinJourneySectionProps) {
   const { t } = useTranslation()
-  const [activeTab, setActiveTab] = useState<'routine' | 'library' | 'reminders'>(initialTab)
 
   // Mock data for guest mode
   const mockRoutine = {
@@ -117,37 +116,16 @@ export function MySkinJourneySection({
           className="text-center mb-8"
         >
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-            My Skin Journey
+            {initialTab === 'routine' && 'Smart Routine'}
+            {initialTab === 'library' && 'Product Library'}
+            {initialTab === 'reminders' && 'Reminders'}
           </h1>
           <p className="text-muted-foreground">
-            Track your products, routines, and progress
+            {initialTab === 'routine' && 'Your personalized skincare routine'}
+            {initialTab === 'library' && 'Track your products and progress'}
+            {initialTab === 'reminders' && 'Never miss your skincare routine'}
           </p>
         </motion.div>
-
-        {/* Tabs */}
-        <div className="flex gap-2 mb-8 justify-center flex-wrap">
-          <Button
-            variant={activeTab === 'routine' ? 'primary' : 'outline'}
-            onClick={() => setActiveTab('routine')}
-          >
-            <Calendar className="w-4 h-4 mr-2" />
-            Smart Routine
-          </Button>
-          <Button
-            variant={activeTab === 'library' ? 'primary' : 'outline'}
-            onClick={() => setActiveTab('library')}
-          >
-            <Package className="w-4 h-4 mr-2" />
-            Product Library
-          </Button>
-          <Button
-            variant={activeTab === 'reminders' ? 'primary' : 'outline'}
-            onClick={() => setActiveTab('reminders')}
-          >
-            <Bell className="w-4 h-4 mr-2" />
-            Reminders
-          </Button>
-        </div>
 
         {/* Guest Mode Notice */}
         <Card className="mb-6 border-primary/20 bg-primary/5">
@@ -159,7 +137,7 @@ export function MySkinJourneySection({
         </Card>
 
         {/* Content */}
-        {activeTab === 'routine' && (
+        {initialTab === 'routine' && (
           <div className="grid md:grid-cols-2 gap-6">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -229,7 +207,7 @@ export function MySkinJourneySection({
           </div>
         )}
 
-        {activeTab === 'library' && (
+        {initialTab === 'library' && (
           <div className="grid gap-4">
             {mockProducts.map((product, index) => (
               <motion.div
@@ -265,7 +243,7 @@ export function MySkinJourneySection({
           </div>
         )}
 
-        {activeTab === 'reminders' && (
+        {initialTab === 'reminders' && (
           <div className="grid gap-4">
             {mockReminders.map((reminder, index) => (
               <motion.div

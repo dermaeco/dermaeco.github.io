@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { AuthModal } from '@/components/AuthModal'
 import { useGuestMode } from '@/hooks/useGuestMode'
-import { User, Shield, Camera, Home, Users, Lightbulb, Menu, X, Leaf } from 'lucide-react'
+import { User, Shield, Camera, Home, Users, Lightbulb, Package, Bell, Menu, X, ChevronDown, Calendar, Clock, Heart, Zap, Leaf } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface NavigationProps {
@@ -25,8 +25,27 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
   const navItems = [
     { key: 'home', label: t('nav.home'), icon: Home },
     { key: 'analysis', label: t('nav.analysis'), icon: Camera },
-    { key: 'community', label: t('nav.community'), icon: Users },
-    { key: 'my-skin-journey', label: t('nav.my_skin_journey'), icon: Lightbulb },
+    {
+      key: 'community',
+      label: t('nav.community'),
+      icon: Users,
+      hasDropdown: true,
+      dropdownItems: [
+        { key: 'skincare-diaries', label: 'Skincare Diaries', icon: Heart },
+        { key: 'trending', label: 'Trending', icon: Zap },
+      ]
+    },
+    {
+      key: 'my-skin-journey',
+      label: t('nav.my_skin_journey'),
+      icon: Lightbulb,
+      hasDropdown: true,
+      dropdownItems: [
+        { key: 'smart-routine', label: 'Smart Routine', icon: Calendar },
+        { key: 'product-library', label: 'Product Library', icon: Package },
+        { key: 'reminders', label: 'Reminders', icon: Bell },
+      ]
+    },
     { key: 'our-vision', label: t('nav.our_vision'), icon: Shield },
   ]
   
@@ -59,6 +78,56 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
               {navItems.map((item) => {
                 const Icon = item.icon
                 const isActive = currentSection === item.key
+                
+                if (item.hasDropdown) {
+                  return (
+                    <div
+                      key={item.key}
+                      className="relative"
+                      onMouseEnter={() => setActiveDropdown(item.key)}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
+                      <button
+                        className={`flex items-center space-x-2 px-4 py-3 transition-all duration-200 font-light text-sm tracking-wide ${
+                          isActive 
+                            ? 'text-black border-b border-black' 
+                            : 'text-gray-600 hover:text-black'
+                        }`}
+                      >
+                        <Icon className="w-4 h-4" />
+                        <span>{item.label}</span>
+                        <ChevronDown className="w-3 h-3 ml-1 transition-transform duration-200" />
+                      </button>
+                      
+                      {/* Dropdown Menu */}
+                      <AnimatePresence>
+                        {activeDropdown === item.key && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                            transition={{ duration: 0.15 }}
+                            className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-lg border border-gray-100 py-2 z-50"
+                          >
+                            {item.dropdownItems?.map((dropdownItem) => {
+                              const DropdownIcon = dropdownItem.icon
+                              return (
+                                <button
+                                  key={dropdownItem.key}
+                                  onClick={() => handleSectionClick(dropdownItem.key)}
+                                  className="flex items-center space-x-3 w-full px-4 py-3 text-left text-sm text-gray-700 hover:bg-gray-50 hover:text-black transition-colors duration-150"
+                                >
+                                  <DropdownIcon className="w-4 h-4" />
+                                  <span>{dropdownItem.label}</span>
+                                </button>
+                              )
+                            })}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )
+                }
                 
                 return (
                   <button
@@ -183,6 +252,56 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
                   {navItems.map((item) => {
                     const Icon = item.icon
                     const isActive = currentSection === item.key
+                    
+                    if (item.hasDropdown) {
+                      return (
+                        <div key={item.key} className="space-y-1">
+                          <button
+                            onClick={() => handleDropdownToggle(item.key)}
+                            className={`flex items-center justify-between w-full px-4 py-3 text-left transition-all duration-200 ${
+                              isActive 
+                                ? 'text-black bg-stone-50' 
+                                : 'text-gray-600 hover:text-black hover:bg-stone-50'
+                            }`}
+                          >
+                            <div className="flex items-center space-x-3">
+                              <Icon className="w-4 h-4" />
+                              <span className="text-sm font-medium">{item.label}</span>
+                            </div>
+                            <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${
+                              activeDropdown === item.key ? 'rotate-180' : ''
+                            }`} />
+                          </button>
+                          
+                          {/* Mobile Dropdown */}
+                          <AnimatePresence>
+                            {activeDropdown === item.key && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="bg-gray-50 overflow-hidden"
+                              >
+                                {item.dropdownItems?.map((dropdownItem) => {
+                                  const DropdownIcon = dropdownItem.icon
+                                  return (
+                                    <button
+                                      key={dropdownItem.key}
+                                      onClick={() => handleSectionClick(dropdownItem.key)}
+                                      className="flex items-center space-x-3 w-full px-8 py-2 text-left text-sm text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-150"
+                                    >
+                                      <DropdownIcon className="w-3 h-3" />
+                                      <span>{dropdownItem.label}</span>
+                                    </button>
+                                  )
+                                })}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      )
+                    }
                     
                     return (
                       <button

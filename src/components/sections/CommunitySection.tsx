@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Heart, MessageCircle, TrendingUp, Sparkles, ArrowLeft } from 'lucide-react'
+import { Heart, MessageCircle, TrendingUp, ArrowLeft } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 interface CommunitySectionProps {
@@ -20,7 +20,6 @@ export function CommunitySection({
   onBack
 }: CommunitySectionProps) {
   const { t } = useTranslation()
-  const [activeTab, setActiveTab] = useState<'diaries' | 'trending'>(initialTab)
 
   // Mock data for guest mode
   const mockDiaries = [
@@ -106,30 +105,15 @@ export function CommunitySection({
           className="text-center mb-8"
         >
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-            Community
+            {initialTab === 'diaries' ? 'Skincare Diaries' : 'Trending Products'}
           </h1>
           <p className="text-muted-foreground">
-            Share your journey and discover what's trending
+            {initialTab === 'diaries' 
+              ? 'Share your journey and discover what\'s trending'
+              : 'Discover what products are trending in the community'
+            }
           </p>
         </motion.div>
-
-        {/* Tabs */}
-        <div className="flex gap-2 mb-8 justify-center">
-          <Button
-            variant={activeTab === 'diaries' ? 'primary' : 'outline'}
-            onClick={() => setActiveTab('diaries')}
-          >
-            <Sparkles className="w-4 h-4 mr-2" />
-            Skincare Diaries
-          </Button>
-          <Button
-            variant={activeTab === 'trending' ? 'primary' : 'outline'}
-            onClick={() => setActiveTab('trending')}
-          >
-            <TrendingUp className="w-4 h-4 mr-2" />
-            Trending
-          </Button>
-        </div>
 
         {/* Guest Mode Notice */}
         <Card className="mb-6 border-primary/20 bg-primary/5">
@@ -141,7 +125,7 @@ export function CommunitySection({
         </Card>
 
         {/* Content */}
-        {activeTab === 'diaries' && (
+        {initialTab === 'diaries' && (
           <div className="grid gap-6">
             {mockDiaries.map((diary, index) => (
               <motion.div
@@ -198,7 +182,7 @@ export function CommunitySection({
           </div>
         )}
 
-        {activeTab === 'trending' && (
+        {initialTab === 'trending' && (
           <div className="grid gap-4">
             {mockTrending.map((item, index) => (
               <motion.div

@@ -194,97 +194,85 @@ export function useSkinAnalysis() {
     if (!user && !isGuest) throw new Error('User not authenticated')
     
     try {
-      if (isGuest) {
-        // For guest mode, provide demo recommendations
-        await new Promise(resolve => setTimeout(resolve, 1500)) // Simulate loading
-        
-        return {
-          recommendations: [
-            {
-              id: 'demo-eucerin-vitamin-c',
-              name: 'Eucerin Hyaluron-Filler Vitamin C Booster',
-              brand: 'Eucerin',
-              category: 'serum',
-              price_min: 28.00,
-              price_max: 35.00,
-              currency: 'EUR',
-              country_origin: 'Germany',
-              skin_types: ['all'],
-              concerns_addressed: ['spots', 'dullness', 'wrinkles'],
-              key_ingredients: ['Vitamin C', 'Hyaluronic Acid', 'Licochalcone A'],
-              purchase_urls: {
-                official: 'https://www.eucerin.com',
-                amazon: 'https://www.amazon.de/s?k=eucerin+vitamin+c'
-              },
-              image_url: '/images/products/eucerin-vitamin-c.png',
-              recommendation_score: 85,
-              recommendation_reason: 'Perfect for your combination skin type and addresses dark spots effectively',
-              priority_level: 1,
-              rating: 4.4
+      // For now, provide demo recommendations for all users
+      // TODO: Implement real product recommendation Edge Function
+      await new Promise(resolve => setTimeout(resolve, 1500)) // Simulate loading
+      
+      return {
+        recommendations: [
+          {
+            id: 'demo-eucerin-vitamin-c',
+            name: 'Eucerin Hyaluron-Filler Vitamin C Booster',
+            brand: 'Eucerin',
+            category: 'serum',
+            price_min: 28.00,
+            price_max: 35.00,
+            currency: 'EUR',
+            country_origin: 'Germany',
+            skin_types: ['all'],
+            concerns_addressed: ['spots', 'dullness', 'wrinkles'],
+            key_ingredients: ['Vitamin C', 'Hyaluronic Acid', 'Licochalcone A'],
+            purchase_urls: {
+              official: 'https://www.eucerin.com',
+              amazon: 'https://www.amazon.de/s?k=eucerin+vitamin+c'
             },
-            {
-              id: 'demo-laroche-retinol',
-              name: 'La Roche-Posay Redermic R Anti-Age Retinol Serum',
-              brand: 'La Roche-Posay',
-              category: 'serum',
-              price_min: 35.00,
-              price_max: 42.00,
-              currency: 'EUR',
-              country_origin: 'France',
-              skin_types: ['normal', 'combination', 'mature'],
-              concerns_addressed: ['wrinkles', 'texture', 'spots'],
-              key_ingredients: ['Retinol', 'Adenosine', 'LHA'],
-              purchase_urls: {
-                official: 'https://www.laroche-posay.com',
-                amazon: 'https://www.amazon.de/s?k=la+roche+posay+retinol'
-              },
-              image_url: '/images/products/laroche-retinol.jpg',
-              recommendation_score: 82,
-              recommendation_reason: 'Gentle retinol formula ideal for improving skin texture and reducing fine lines',
-              priority_level: 1,
-              rating: 4.3
+            image_url: '/images/products/eucerin-vitamin-c.png',
+            recommendation_score: 85,
+            recommendation_reason: 'Perfect for your combination skin type and addresses dark spots effectively',
+            priority_level: 1,
+            rating: 4.4
+          },
+          {
+            id: 'demo-laroche-retinol',
+            name: 'La Roche-Posay Redermic R Anti-Age Retinol Serum',
+            brand: 'La Roche-Posay',
+            category: 'serum',
+            price_min: 35.00,
+            price_max: 42.00,
+            currency: 'EUR',
+            country_origin: 'France',
+            skin_types: ['normal', 'combination', 'mature'],
+            concerns_addressed: ['wrinkles', 'texture', 'spots'],
+            key_ingredients: ['Retinol', 'Adenosine', 'LHA'],
+            purchase_urls: {
+              official: 'https://www.laroche-posay.com',
+              amazon: 'https://www.amazon.de/s?k=la+roche+posay+retinol'
             },
-            {
-              id: 'demo-caudalie-radiance',
-              name: 'Caudalie Vinoperfect Radiance Serum',
-              brand: 'Caudalie',
-              category: 'serum',
-              price_min: 42.00,
-              price_max: 49.00,
-              currency: 'EUR',
-              country_origin: 'France',
-              skin_types: ['all'],
-              concerns_addressed: ['spots', 'dullness', 'hyperpigmentation'],
-              key_ingredients: ['Viniferine', 'Glycolic Acid', 'Vitamin C'],
-              purchase_urls: {
-                official: 'https://www.caudalie.com',
-                sephora: 'https://www.sephora.com/search?keyword=caudalie'
-              },
-              image_url: '/images/products/caudalie-radiance.jpg',
-              recommendation_score: 80,
-              recommendation_reason: 'Natural ingredients that brighten skin and reduce hyperpigmentation',
-              priority_level: 2,
-              rating: 4.1
-            }
-          ],
-          total_count: 3,
-          analysis_summary: {
-            skin_type: 'combination',
-            primary_concerns: ['dark spots', 'hydration', 'fine lines']
+            image_url: '/images/products/laroche-retinol.jpg',
+            recommendation_score: 82,
+            recommendation_reason: 'Gentle retinol formula ideal for improving skin texture and reducing fine lines',
+            priority_level: 1,
+            rating: 4.3
+          },
+          {
+            id: 'demo-caudalie-radiance',
+            name: 'Caudalie Vinoperfect Radiance Serum',
+            brand: 'Caudalie',
+            category: 'serum',
+            price_min: 42.00,
+            price_max: 49.00,
+            currency: 'EUR',
+            country_origin: 'France',
+            skin_types: ['all'],
+            concerns_addressed: ['spots', 'dullness', 'hyperpigmentation'],
+            key_ingredients: ['Viniferine', 'Glycolic Acid', 'Vitamin C'],
+            purchase_urls: {
+              official: 'https://www.caudalie.com',
+              sephora: 'https://www.sephora.com/search?keyword=caudalie'
+            },
+            image_url: '/images/products/caudalie-radiance.jpg',
+            recommendation_score: 80,
+            recommendation_reason: 'Natural ingredients that brighten skin and reduce hyperpigmentation',
+            priority_level: 2,
+            rating: 4.1
           }
+        ],
+        total_count: 3,
+        analysis_summary: {
+          skin_type: 'combination',
+          primary_concerns: ['dark spots', 'hydration', 'fine lines']
         }
       }
-      
-      const { data, error } = await supabase.functions.invoke('product-recommendations', {
-        body: {
-          analysisId,
-          ...preferences
-        }
-      })
-
-      if (error) throw error
-      
-      return data.data
     } catch (error: any) {
       toast.error(error.message || 'Failed to get recommendations')
       throw error

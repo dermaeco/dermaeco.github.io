@@ -15,8 +15,8 @@ import { UploadSection } from '@/components/sections/UploadSection'
 import { QuestionnaireSection } from '@/components/sections/QuestionnaireSection'
 import { ResultsSection } from '@/components/sections/ResultsSection'
 import { ProductsSection } from '@/components/sections/ProductsSection'
-import { CommunitySection } from '@/components/sections/CommunitySection'
-import { MySkinJourneySection } from '@/components/sections/MySkinJourneySection'
+// import { CommunitySection } from '@/components/sections/CommunitySection'
+// import { MySkinJourneySection } from '@/components/sections/MySkinJourneySection'
 import { OurVisionSection } from '@/components/sections/OurVisionSection'
 import { ProfileSection } from '@/components/sections/ProfileSection'
 import { ComparisonSection } from '@/components/sections/ComparisonSection'
@@ -301,6 +301,7 @@ function AppContent() {
           )}
           
           {/* New Feature Sections */}
+          {/* Temporarily disabled - requires database tables
           {currentSection === 'community' && (
             <motion.div
               key="community"
@@ -316,7 +317,9 @@ function AppContent() {
               />
             </motion.div>
           )}
+          */}
           
+          {/* Temporarily disabled - requires database tables
           {currentSection === 'my-skin-journey' && (
             <motion.div
               key="my-skin-journey"
@@ -334,6 +337,7 @@ function AppContent() {
               />
             </motion.div>
           )}
+          */}
           
           {currentSection === 'our-vision' && (
             <motion.div
@@ -365,7 +369,8 @@ function AppContent() {
             </motion.div>
           )}
 
-          {/* Dropdown Navigation Sections */}
+          {/* Dropdown Navigation Sections - Temporarily disabled */}
+          {/* These sections require database tables that haven't been created yet
           {currentSection === 'smart-routine' && (
             <motion.div
               key="smart-routine"
@@ -439,6 +444,7 @@ function AppContent() {
               />
             </motion.div>
           )}
+          */}
 
           {/* Profile Section */}
           {currentSection === 'profile' && (

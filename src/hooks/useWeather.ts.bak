@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { WeatherData } from '@/types'
-import { supabase } from '@/lib/supabase'
+import { supabase } from '@/integrations/supabase/client'
 
 interface GeolocationPosition {
   coords: {

@@ -125,12 +125,6 @@ export function AuthModal({ isOpen, onClose, mode = 'signin', onModeChange }: Au
                   </div>
                 )}
                 
-                {authMode === 'signin' && (
-                  <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                    <p className="text-sm text-blue-700 font-medium">Demo Account:</p>
-                    <p className="text-xs text-blue-600 mt-1">Email: admin@demo.com | Password: admin123</p>
-                  </div>
-                )}
                 
                 <Input
                   type="email"

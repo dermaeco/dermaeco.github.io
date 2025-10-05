@@ -96,14 +96,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.protocol}//${window.location.host}/auth/callback`
+          emailRedirectTo: `${window.location.origin}/`
         }
       })
       if (error) {
         throw error
       }
-      toast.success('Check your email for verification link!')
+      toast.success('Account created! Check your email for verification link.')
     } catch (error: any) {
+      console.error('Sign up error:', error)
       toast.error(error.message || 'Sign up failed')
       throw error
     } finally {

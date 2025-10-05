@@ -67,10 +67,11 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div 
-              className="flex items-center cursor-pointer"
+              className="flex items-center space-x-3 cursor-pointer"
               onClick={() => handleSectionClick('home')}
             >
-              <img src={dermaEcoLogo} alt="DermaEco Logo" className="h-12 w-auto" />
+              <img src={dermaEcoLogo} alt="DermaEco Logo" className="h-10 w-auto" />
+              <span className="font-sans text-xl font-medium tracking-wide text-[#2d5016]">DermaEco</span>
             </div>
             
             {/* Desktop Navigation Items */}

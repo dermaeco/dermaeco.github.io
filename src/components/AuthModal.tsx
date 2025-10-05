@@ -6,8 +6,9 @@ import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAuth } from '@/contexts/AuthContext'
 import { useGuestMode } from '@/hooks/useGuestMode'
-import { X, Mail, Lock, User, Leaf } from 'lucide-react'
+import { X, Mail, Lock, User } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import logo from '@/assets/dermaeco-logo-new.png'
 
 interface AuthModalProps {
   isOpen: boolean
@@ -88,8 +89,8 @@ export function AuthModal({ isOpen, onClose, mode = 'signin', onModeChange }: Au
                 <X className="w-5 h-5" />
               </button>
               
-              <div className="w-8 h-8 bg-emerald-600 flex items-center justify-center mx-auto mb-6 rounded-lg">
-                <Leaf className="text-white w-5 h-5" />
+              <div className="w-12 h-12 flex items-center justify-center mx-auto mb-6">
+                <img src={logo} alt="DermaEco" className="w-full h-full" />
               </div>
               
               <CardTitle className="text-xl font-light tracking-wide">

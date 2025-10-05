@@ -88,18 +88,18 @@ export function useSkinAnalysis() {
         const demoResults = {
           analysis_id: 'demo-' + Date.now(),
           analysis: {
-            wrinkles_score: 4,
-            spots_score: 6,
-            acne_score: 2,
-            texture_score: 5,
-            hydration_score: 6,
-            sebum_score: 4,
-            pores_score: 5,
-            redness_score: 3,
-            dark_circles_score: 4,
+            wrinkles_score: 8,  // Inverted: 8/10 = Good (was 4/10)
+            spots_score: 4,     // Inverted: 4/10 = Fair (was 6/10)
+            acne_score: 8,      // Inverted: 8/10 = Good (was 2/10)
+            texture_score: 6,   // Inverted: 6/10 = Good (was 5/10)
+            hydration_score: 4, // Inverted: 4/10 = Fair (was 6/10)
+            sebum_score: 6,     // Inverted: 6/10 = Good (was 4/10)
+            pores_score: 5,     // Inverted: 5/10 = Fair (was 5/10)
+            redness_score: 7,   // Inverted: 7/10 = Good (was 3/10)
+            dark_circles_score: 6, // Inverted: 6/10 = Good (was 4/10)
             skin_age_estimate: 32,
             skin_type: 'combination',
-            overall_score: 4
+            overall_score: 6    // Inverted: 6/10 = Good (was 4/10)
           },
           detailed_analysis: {
             strengths: [

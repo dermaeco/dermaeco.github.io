@@ -31,19 +31,19 @@ serve(async (req) => {
     const systemPrompt = `You are an expert dermatologist AI assistant specialized in skin analysis. 
 Analyze the provided skin image and questionnaire data to provide a comprehensive skin assessment.
 
-Return a detailed analysis with scores from 1-10 for each metric (where 1 is excellent and 10 is needs attention):
-- wrinkles_score: Fine lines and wrinkles visibility
-- spots_score: Dark spots, hyperpigmentation, sun damage
-- acne_score: Active acne, breakouts, blemishes
-- texture_score: Skin smoothness and evenness
-- hydration_score: Dryness vs moisture level (1=well hydrated, 10=very dry)
-- sebum_score: Oil production (1=balanced, 10=very oily)
-- pores_score: Pore visibility and size
-- redness_score: Inflammation, redness, sensitivity
-- dark_circles_score: Under-eye circles and puffiness
+Return a detailed analysis with scores from 1-10 for each metric (where 10 is excellent and 1 is needs attention):
+- wrinkles_score: Fine lines and wrinkles (10=no wrinkles, 1=many deep wrinkles)
+- spots_score: Dark spots, hyperpigmentation (10=clear skin, 1=significant spots)
+- acne_score: Active acne, breakouts (10=clear skin, 1=severe acne)
+- texture_score: Skin smoothness (10=very smooth, 1=very rough)
+- hydration_score: Moisture level (10=well hydrated, 1=very dry)
+- sebum_score: Oil balance (10=balanced, 1=very oily or very dry)
+- pores_score: Pore visibility (10=minimal pores, 1=very enlarged pores)
+- redness_score: Inflammation, sensitivity (10=calm skin, 1=very inflamed)
+- dark_circles_score: Under-eye area (10=no dark circles, 1=severe dark circles)
 - skin_age_estimate: Estimated skin age in years
 - skin_type: One of: normal, dry, oily, combination, sensitive
-- overall_score: Overall skin health (1-10)
+- overall_score: Overall skin health (10=excellent, 1=poor)
 
 Also provide:
 - strengths: Array of 2-3 positive aspects of the skin

@@ -12,10 +12,13 @@ import {
   Sparkles, 
   Target,
   ArrowRight,
-  Clock
+  Clock,
+  Share2,
+  Download
 } from 'lucide-react'
 import { getScoreColor, getScoreBgColor, getScoreLabel } from '@/lib/utils'
 import { AnalysisResults } from '@/types'
+import toast from 'react-hot-toast'
 
 interface ResultsSectionProps {
   results: AnalysisResults | null
@@ -78,6 +81,61 @@ export function ResultsSection({
   
   const analysis = results.analysis || {}
   const detailed = results.detailed_analysis || {}
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'My Skin Analysis Results',
+          text: `Overall Skin Health: ${analysis.overall_level || 'N/A'}\n${analysis.overall_summary || ''}`,
+          url: window.location.href
+        })
+        toast.success('Shared successfully!')
+      } catch (error) {
+        if ((error as Error).name !== 'AbortError') {
+          toast.error('Failed to share')
+        }
+      }
+    } else {
+      // Fallback: copy to clipboard
+      const shareText = `My Skin Analysis Results\n\nOverall Health: ${analysis.overall_level || 'N/A'}\n${analysis.overall_summary || ''}\n\nCheck out DermaEco for your own skin analysis!`
+      navigator.clipboard.writeText(shareText)
+      toast.success('Results copied to clipboard!')
+    }
+  }
+
+  const handleExport = () => {
+    // Create a simple text export
+    const exportData = {
+      date: new Date().toISOString(),
+      overall_level: analysis.overall_level,
+      overall_summary: analysis.overall_summary,
+      skin_type: analysis.skin_type,
+      skin_age_estimate: analysis.skin_age_estimate,
+      scores: {
+        wrinkles: analysis.wrinkles_score,
+        spots: analysis.spots_score,
+        acne: analysis.acne_score,
+        texture: analysis.texture_score,
+        hydration: analysis.hydration_score,
+        sebum: analysis.sebum_score,
+      },
+      strengths: detailed.strengths,
+      concerns: detailed.concerns,
+      recommendations: detailed.recommendations,
+    }
+
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `skin-analysis-${new Date().toISOString().split('T')[0]}.json`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+    toast.success('Analysis exported!')
+  }
   
   const scoreCategories = [
     {
@@ -126,11 +184,25 @@ export function ResultsSection({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-semibold text-stone-900 mb-4">
-              {t('results.title')}
-            </h2>
-            <p className="text-lg text-stone-600">Powered by advanced AI analysis</p>
+          <div className="mb-12">
+            <div className="text-center mb-6">
+              <h2 className="text-3xl md:text-4xl font-serif font-semibold text-stone-900 mb-4">
+                {t('results.title')}
+              </h2>
+              <p className="text-lg text-stone-600">Powered by advanced AI analysis</p>
+            </div>
+            
+            {/* Share and Export Buttons */}
+            <div className="flex justify-center gap-3">
+              <Button onClick={handleShare} variant="outline" size="sm">
+                <Share2 className="w-4 h-4 mr-2" />
+                Share Results
+              </Button>
+              <Button onClick={handleExport} variant="outline" size="sm">
+                <Download className="w-4 h-4 mr-2" />
+                Export Data
+              </Button>
+            </div>
           </div>
         </motion.div>
         

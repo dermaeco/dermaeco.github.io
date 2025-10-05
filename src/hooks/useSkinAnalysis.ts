@@ -291,6 +291,32 @@ export function useSkinAnalysis() {
     }
   }
 
+  async function loadAnalysis(analysisId: string) {
+    if (!user) throw new Error('User not authenticated')
+
+    try {
+      const { data, error } = await supabase
+        .from('skin_analyses')
+        .select('*')
+        .eq('id', analysisId)
+        .eq('user_id', user.id)
+        .single()
+
+      if (error) throw error
+      if (!data) throw new Error('Analysis not found')
+
+      // Set the loaded analysis as current
+      setUploadedImageUrl(data.image_url)
+      setAnalysisResults(data.analysis_data as AnalysisResults)
+      setCurrentAnalysisId(data.id)
+
+      return data
+    } catch (error: any) {
+      toast.error(error.message || 'Failed to load analysis')
+      throw error
+    }
+  }
+
   return {
     isUploading,
     isAnalyzing,
@@ -300,6 +326,7 @@ export function useSkinAnalysis() {
     uploadImage,
     analyzeImage,
     getRecommendations,
+    loadAnalysis,
     setUploadedImageUrl,
     setAnalysisResults,
     setCurrentAnalysisId

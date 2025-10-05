@@ -209,6 +209,23 @@ const resources = {
       'library.add_product': 'Add Product',
       'library.my_products': 'My Products',
       'library.favorites': 'Favorites',
+
+      // Profile & Comparison
+      'profile.title': 'My Profile',
+      'profile.account_info': 'Account Information',
+      'profile.analysis_history': 'Analysis History',
+      'profile.compare': 'Compare Analyses',
+      'profile.view_analysis': 'View Analysis',
+      'profile.delete_analysis': 'Delete Analysis',
+      'compare.title': 'Compare Analyses',
+      'compare.subtitle': 'Track your skin\'s progress over time',
+      'compare.before': 'Before (Older Analysis)',
+      'compare.after': 'After (Newer Analysis)',
+      'compare.visual': 'Visual Comparison',
+      'compare.metrics': 'Detailed Metrics Comparison',
+      'compare.better': 'better',
+      'compare.worse': 'worse',
+      'compare.no_change': 'No change',
     }
   },
   de: {

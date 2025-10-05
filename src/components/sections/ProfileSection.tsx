@@ -31,10 +31,11 @@ interface SkinAnalysis {
 
 interface ProfileSectionProps {
   onViewAnalysis: (analysisId: string) => void
+  onCompare: () => void
   onBack: () => void
 }
 
-export function ProfileSection({ onViewAnalysis, onBack }: ProfileSectionProps) {
+export function ProfileSection({ onViewAnalysis, onCompare, onBack }: ProfileSectionProps) {
   const { t } = useTranslation()
   const { user } = useAuth()
   const [analyses, setAnalyses] = useState<SkinAnalysis[]>([])
@@ -170,10 +171,17 @@ export function ProfileSection({ onViewAnalysis, onBack }: ProfileSectionProps) 
           {/* Analysis History */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Calendar className="w-5 h-5" />
-                Analysis History ({analyses.length})
-              </CardTitle>
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center gap-2">
+                  <Calendar className="w-5 h-5" />
+                  Analysis History ({analyses.length})
+                </CardTitle>
+                {analyses.length >= 2 && (
+                  <Button onClick={onCompare} variant="outline" size="sm">
+                    Compare Analyses
+                  </Button>
+                )}
+              </div>
             </CardHeader>
             <CardContent>
               {loading ? (

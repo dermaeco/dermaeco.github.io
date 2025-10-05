@@ -19,6 +19,7 @@ import { CommunitySection } from '@/components/sections/CommunitySection'
 import { MySkinJourneySection } from '@/components/sections/MySkinJourneySection'
 import { OurVisionSection } from '@/components/sections/OurVisionSection'
 import { ProfileSection } from '@/components/sections/ProfileSection'
+import { ComparisonSection } from '@/components/sections/ComparisonSection'
 import { AuthModal } from '@/components/AuthModal'
 
 // Hooks
@@ -40,7 +41,7 @@ interface QuestionnaireData {
   environmental_factors: string[]
 }
 
-type AppSection = 'home' | 'analysis' | 'community' | 'my-skin-journey' | 'our-vision' | 'upload' | 'questionnaire' | 'results' | 'products' | 'smart-routine' | 'product-library' | 'reminders' | 'skincare-diaries' | 'trending' | 'profile'
+type AppSection = 'home' | 'analysis' | 'community' | 'my-skin-journey' | 'our-vision' | 'upload' | 'questionnaire' | 'results' | 'products' | 'smart-routine' | 'product-library' | 'reminders' | 'skincare-diaries' | 'trending' | 'profile' | 'compare'
 
 // Create a client
 const queryClient = new QueryClient({
@@ -66,6 +67,7 @@ function AppContent() {
     isAnalyzing,
     currentAnalysisId,
     analyzeImage,
+    loadAnalysis,
     setUploadedImageUrl,
     setAnalysisResults,
     setCurrentAnalysisId
@@ -182,14 +184,18 @@ function AppContent() {
   const handleViewFullRoutine = (routineId: string) => {
     toast.success(t('toast.view_full_routine') + ': ' + routineId)
   }
-
+  
   // Profile handlers
-  const handleViewPastAnalysis = (analysisId: string) => {
+  const handleViewPastAnalysis = async (analysisId: string) => {
     if (analysisId === 'new') {
       setCurrentSection('upload')
     } else {
-      // TODO: Load specific analysis and show results
-      toast('Loading analysis... (feature in progress)')
+      try {
+        await loadAnalysis(analysisId)
+        setCurrentSection('results')
+      } catch (error) {
+        console.error('Failed to load analysis:', error)
+      }
     }
   }
   
@@ -445,7 +451,23 @@ function AppContent() {
             >
               <ProfileSection
                 onViewAnalysis={handleViewPastAnalysis}
+                onCompare={() => setCurrentSection('compare')}
                 onBack={() => setCurrentSection('home')}
+              />
+            </motion.div>
+          )}
+
+          {/* Comparison Section */}
+          {currentSection === 'compare' && (
+            <motion.div
+              key="compare"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+            >
+              <ComparisonSection
+                onBack={() => setCurrentSection('profile')}
               />
             </motion.div>
           )}

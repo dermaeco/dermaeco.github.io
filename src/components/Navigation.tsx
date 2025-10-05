@@ -7,6 +7,7 @@ import { AuthModal } from '@/components/AuthModal'
 import { useGuestMode } from '@/hooks/useGuestMode'
 import { User, Shield, Camera, Home, Users, Lightbulb, Package, Bell, Menu, X, ChevronDown, Calendar, Clock, Heart, Star, Zap } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import dermaEcoLogo from '@/assets/dermaeco-logo.png'
 
 interface NavigationProps {
   currentSection?: string
@@ -66,13 +67,10 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div 
-              className="flex items-center space-x-3 cursor-pointer"
+              className="flex items-center cursor-pointer"
               onClick={() => handleSectionClick('home')}
             >
-              <div className="w-6 h-6 bg-black flex items-center justify-center">
-                <span className="text-white font-light text-xs">S</span>
-              </div>
-              <span className="font-sans text-lg font-light tracking-wider text-black uppercase">skinAI</span>
+              <img src={dermaEcoLogo} alt="DermaEco Logo" className="h-12 w-auto" />
             </div>
             
             {/* Desktop Navigation Items */}

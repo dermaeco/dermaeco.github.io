@@ -70,7 +70,7 @@ export function HeroSection({ onStartAnalysis }: HeroSectionProps) {
             >
               <img 
                 src="/images/wabi-sabi-hero.png" 
-                alt="SkinAI Hero" 
+                alt="DermaEco Hero" 
                 className="opacity-75 hover:opacity-90 transition-opacity duration-300 max-w-md mx-auto"
               />
             </motion.div>

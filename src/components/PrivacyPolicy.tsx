@@ -207,7 +207,7 @@ export function PrivacyPolicy({ onAccept, onDecline, isModal = false }: PrivacyP
               如果您对我们的隐私政策有任何疑问或希望行使您的权益，请联系我们：
             </p>
             <div className="space-y-2 text-sm text-stone-600">
-              <p><strong>邮箱：</strong> privacy@skinai.com</p>
+              <p><strong>邮箱：</strong> privacy@dermaeco.com</p>
               <p><strong>地址：</strong> 上海市黄浦区世纪大道100号</p>
               <p><strong>电话：</strong> +86 21 1234 5678</p>
             </div>

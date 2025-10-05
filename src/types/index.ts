@@ -1,4 +1,4 @@
-// Core types for skinAI platform
+// Core types for DermaEco platform
 export interface User {
   id: string
   email?: string

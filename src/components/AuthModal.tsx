@@ -41,7 +41,7 @@ export function AuthModal({ isOpen, onClose, mode = 'signin', onModeChange }: Au
         // Create a mock user session for test account
         localStorage.setItem('test_user', JSON.stringify({
           id: 'test-user-123',
-          email: 'admin@skinai.demo',
+          email: 'admin@dermaeco.demo',
           created_at: new Date().toISOString()
         }))
         enableGuestMode() // Also enable guest mode for full functionality
@@ -111,7 +111,7 @@ export function AuthModal({ isOpen, onClose, mode = 'signin', onModeChange }: Au
               <p className="text-gray-600 mt-3 font-light text-sm">
                 {authMode === 'signin' 
                   ? 'Sign in to access your skin analysis history' 
-                  : 'Join skinAI to save your analysis results'
+                  : 'Join DermaEco to save your analysis results'
                 }
               </p>
             </CardHeader>

@@ -5,9 +5,8 @@ import { Button } from '@/components/ui/button'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { AuthModal } from '@/components/AuthModal'
 import { useGuestMode } from '@/hooks/useGuestMode'
-import { User, Shield, Camera, Home, Users, Lightbulb, Package, Bell, Menu, X, ChevronDown, Calendar, Clock, Heart, Star, Zap } from 'lucide-react'
+import { User, Shield, Camera, Home, Users, Lightbulb, Package, Bell, Menu, X, ChevronDown, Calendar, Clock, Heart, Star, Zap, Leaf } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import dermaEcoLogo from '@/assets/dermaeco-logo.png'
 
 interface NavigationProps {
   currentSection?: string
@@ -67,10 +66,11 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <div 
-              className="flex items-center cursor-pointer"
+              className="flex items-center cursor-pointer gap-2"
               onClick={() => handleSectionClick('home')}
             >
-              <img src={dermaEcoLogo} alt="DermaEco Logo" className="h-14 w-auto" />
+              <Leaf className="w-8 h-8 text-emerald-600" />
+              <span className="text-2xl font-light text-wabi-obsidian tracking-tight">Derma Eco</span>
             </div>
             
             {/* Desktop Navigation Items */}

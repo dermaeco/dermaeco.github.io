@@ -467,7 +467,12 @@ const resources = {
       
       // Results
       'results.title': 'Ihre Hautanalyse-Ergebnisse',
+      'results.analyzing': 'Ihre Haut wird analysiert',
+      'results.analyzing_desc': 'Unsere KI analysiert sorgfältig Ihr Foto, um personalisierte Einblicke zu geben',
+      'results.ai_working': 'KI-Analyse läuft...',
       'results.processing': 'Ihre Haut wird analysiert...',
+      'results.no_results_title': 'Keine Ergebnisse verfügbar',
+      'results.no_results_desc': 'Füllen Sie den Fragebogen aus, um Ihre Analyseergebnisse zu erhalten',
       'results.overall_score': 'Gesamtpunktzahl Hautgesundheit',
       'results.skin_type': 'Hauttyp',
       'results.skin_age': 'Geschätztes Hautalter',
@@ -791,7 +796,12 @@ const resources = {
       
       // Results
       'results.title': 'Résultats de votre analyse cutanée',
+      'results.analyzing': 'Analyse de votre peau',
+      'results.analyzing_desc': 'Notre IA analyse soigneusement votre photo pour fournir des informations personnalisées',
+      'results.ai_working': 'Analyse IA en cours...',
       'results.processing': 'Analyse de votre peau...',
+      'results.no_results_title': 'Aucun résultat disponible',
+      'results.no_results_desc': 'Complétez le questionnaire pour obtenir vos résultats d\'analyse',
       'results.overall_score': 'Score global de santé cutanée',
       'results.skin_type': 'Type de peau',
       'results.skin_age': 'Âge estimé de la peau',
@@ -1115,7 +1125,12 @@ const resources = {
       
       // Results
       'results.title': '您的皮肤分析结果',
+      'results.analyzing': '正在分析您的皮肤',
+      'results.analyzing_desc': '我们的AI正在仔细分析您的照片，以提供个性化见解',
+      'results.ai_working': 'AI分析进行中...',
       'results.processing': '正在分析您的皮肤...',
+      'results.no_results_title': '暂无结果',
+      'results.no_results_desc': '请完成问卷调查以获取分析结果',
       'results.overall_score': '整体皮肤健康评分',
       'results.skin_type': '皮肤类型',
       'results.skin_age': '估计皮肤年龄',

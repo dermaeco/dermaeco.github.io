@@ -78,16 +78,30 @@ export function ResultsSection({
     return (
       <section className="wabi-section">
         <div className="wabi-container max-w-4xl">
-          <div className="text-center">
+          <div className="text-center py-20">
             <motion.div
               animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="w-16 h-16 border-4 border-gray-200 border-t-sage-500 rounded-full mx-auto mb-6"
+              transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+              className="w-20 h-20 border-4 border-stone-200 border-t-stone-800 rounded-full mx-auto mb-8"
             />
-            <h2 className="text-2xl font-serif font-semibold text-stone-900 mb-4">
-              {t('results.processing')}
-            </h2>
-            <p className="text-stone-600">This may take a few moments...</p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-2xl md:text-3xl font-serif font-semibold text-stone-900 mb-4">
+                {t('results.analyzing')}
+              </h2>
+              <p className="text-lg text-stone-600 mb-2">{t('results.analyzing_desc')}</p>
+              <motion.div
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="flex items-center justify-center space-x-2 text-stone-500"
+              >
+                <Brain className="w-5 h-5" />
+                <span className="text-sm">{t('results.ai_working')}</span>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>

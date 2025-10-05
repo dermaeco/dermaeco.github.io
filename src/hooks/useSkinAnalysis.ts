@@ -85,9 +85,12 @@ export function useSkinAnalysis() {
   async function analyzeImage(imageUrl: string, questionnaire?: QuestionnaireData): Promise<AnalysisResults> {
     if (!user && !isGuest) throw new Error('User not authenticated')
     
+    console.log('🔍 analyzeImage called:', { user: !!user, isGuest, imageUrl })
+    
     setIsAnalyzing(true)
     try {
       if (isGuest) {
+        console.log('📊 Using DEMO analysis for guest mode')
         // For guest mode, provide a demo analysis result
         await new Promise(resolve => setTimeout(resolve, 3000)) // Simulate processing time
         
@@ -140,6 +143,7 @@ export function useSkinAnalysis() {
       }
       
       // Call AI-powered skin analysis Edge Function for authenticated users
+      console.log('🤖 Calling REAL AI analysis for authenticated user')
       const { data, error } = await supabase.functions.invoke('analyze-skin', {
         body: {
           imageUrl,
@@ -147,7 +151,7 @@ export function useSkinAnalysis() {
         }
       })
 
-      if (error) throw error
+      console.log('🤖 AI response:', { data, error })
       
       const results = {
         analysis_id: 'analysis-' + Date.now(),

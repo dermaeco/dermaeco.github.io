@@ -72,10 +72,17 @@ function AppContent() {
     setAnalysisResults
   } = useSkinAnalysis()
   
-  // Enable guest mode automatically for demo purposes
+  // Enable guest mode automatically for demo purposes, but disable when user logs in
   useEffect(() => {
+    console.log('🔐 Auth state:', { user: !!user, isGuest, loading })
     if (!user && !isGuest && !loading) {
+      console.log('👤 Enabling guest mode')
       enableGuestMode()
+    } else if (user && isGuest) {
+      console.log('👤 User logged in, but guest mode still active - this is the bug!')
+      // Force re-check of guest mode
+      localStorage.removeItem('guest_session')
+      window.location.reload()
     }
   }, [user, isGuest, loading, enableGuestMode])
   

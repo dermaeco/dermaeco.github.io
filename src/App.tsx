@@ -206,13 +206,9 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-warm-50 flex items-center justify-center">
         <div className="text-center">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            className="w-16 h-16 mx-auto mb-4"
-          >
+          <div className="w-16 h-16 mx-auto mb-4">
             <img src={logo} alt="DermaEco" className="w-full h-full object-contain" />
-          </motion.div>
+          </div>
           <p className="text-stone-600">{t('common.loading')}</p>
         </div>
       </div>

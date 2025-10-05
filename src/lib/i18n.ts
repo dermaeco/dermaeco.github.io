@@ -220,6 +220,10 @@ const resources = {
       'library.add_product': 'Add Product',
       'library.my_products': 'My Products',
       'library.favorites': 'Favorites',
+      'library.product_library': 'Product Library',
+      
+      // Reminders
+      'reminders.title': 'Reminders',
 
       // Profile & Comparison
       'profile.title': 'My Profile',
@@ -455,6 +459,10 @@ const resources = {
       'library.add_product': 'Produkt hinzufügen',
       'library.my_products': 'Meine Produkte',
       'library.favorites': 'Favoriten',
+      'library.product_library': 'Produktbibliothek',
+      
+      // Reminders
+      'reminders.title': 'Erinnerungen',
     }
   },
   fr: {
@@ -665,6 +673,10 @@ const resources = {
       'library.add_product': 'Ajouter un produit',
       'library.my_products': 'Mes produits',
       'library.favorites': 'Favoris',
+      'library.product_library': 'Bibliothèque de produits',
+      
+      // Reminders
+      'reminders.title': 'Rappels',
     }
   },
   zh: {
@@ -883,6 +895,10 @@ const resources = {
       'library.add_product': '添加产品',
       'library.my_products': '我的产品',
       'library.favorites': '收藏',
+      'library.product_library': '产品库',
+      
+      // Reminders
+      'reminders.title': '提醒',
 
       // Profile & Comparison
       'profile.title': '我的资料',

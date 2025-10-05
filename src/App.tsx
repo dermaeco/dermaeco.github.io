@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Leaf } from 'lucide-react'
+import logo from '@/assets/dermaeco-logo.png'
 
 // Context and i18n
 import { AuthProvider, useAuth } from '@/contexts/AuthContext'
@@ -206,9 +206,13 @@ function AppContent() {
     return (
       <div className="min-h-screen bg-warm-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-            <Leaf className="text-white w-7 h-7" />
-          </div>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className="w-16 h-16 mx-auto mb-4"
+          >
+            <img src={logo} alt="DermaEco" className="w-full h-full object-contain" />
+          </motion.div>
           <p className="text-stone-600">{t('common.loading')}</p>
         </div>
       </div>

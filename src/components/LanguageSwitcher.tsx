@@ -5,9 +5,9 @@ import { Button } from '@/components/ui/button'
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'zh', name: '中文', flag: '🇨🇳' },
   { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
-  { code: 'zh', name: '中文', flag: '🇨🇳' },
 ]
 
 export function LanguageSwitcher() {

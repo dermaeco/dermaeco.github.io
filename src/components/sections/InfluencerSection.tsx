@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Star, TrendingUp, Users, DollarSign, Award, Crown, Verified } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { influencerService, productService, creatorStatsService, InfluencerProfile, Product, CreatorStats } from '@/services/supabase'
 import toast from 'react-hot-toast'
 

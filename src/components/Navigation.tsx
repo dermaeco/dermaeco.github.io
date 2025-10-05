@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAuth } from '@/contexts/AuthContext'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
 import { AuthModal } from '@/components/AuthModal'
 import { useGuestMode } from '@/hooks/useGuestMode'

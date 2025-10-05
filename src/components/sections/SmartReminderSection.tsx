@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Bell, Clock, Calendar, Thermometer, Sun, Droplets, ShoppingCart, Settings } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { Reminder } from '@/types'
 
 interface SmartReminderSectionProps {

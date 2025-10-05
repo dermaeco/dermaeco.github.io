@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Package, Star, Calendar, ShoppingCart, AlertCircle, CheckCircle, Clock, Heart } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 import { productService, userProductService, Product, UserProductLibrary } from '@/services/supabase'
 import toast from 'react-hot-toast'
 

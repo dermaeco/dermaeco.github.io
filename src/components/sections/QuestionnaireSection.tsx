@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/components/ui/Button'
-import { Input } from '@/components/ui/Input'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { motion } from 'framer-motion'
 import { Moon, Brain, Utensils, Dumbbell, Heart, Users, Wine } from 'lucide-react'
 

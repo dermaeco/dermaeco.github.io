@@ -1,6 +1,6 @@
 import React from 'react'
 import { Shield, Lock, Eye, Database, UserCheck, Clock } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import { Button } from '@/components/ui/button'
 
 interface PrivacyPolicyProps {
   onAccept?: () => void

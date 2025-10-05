@@ -152,25 +152,24 @@ export function ResultsSection({
                   />
                 </div>
                 
-                {/* Overall Score */}
+                {/* Overall Health */}
                 <div className="text-center">
                   <h3 className="text-lg font-serif font-semibold text-stone-900 mb-4">
-                    {t('results.overall_score')}
+                    Overall Skin Health
                   </h3>
-                  <div className={`w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center border-4 ${
-                    getScoreBgColor(analysis.overall_score || 5)
-                  }`}>
-                    <span className={`text-3xl font-bold ${
-                      getScoreColor(analysis.overall_score || 5)
+                  <div className="mb-4">
+                    <p className={`text-2xl font-bold mb-2 ${
+                      analysis.overall_level === 'Excellent' ? 'text-emerald-600' :
+                      analysis.overall_level === 'Good' ? 'text-amber-600' :
+                      analysis.overall_level === 'Fair' ? 'text-orange-600' :
+                      'text-red-600'
                     }`}>
-                      {analysis.overall_score || 'N/A'}
-                    </span>
+                      {analysis.overall_level || 'N/A'}
+                    </p>
+                    <p className="text-sm text-stone-600 text-left px-2">
+                      {analysis.overall_summary || 'Analysis summary not available'}
+                    </p>
                   </div>
-                  <p className={`font-medium ${
-                    getScoreColor(analysis.overall_score || 5)
-                  }`}>
-                    {getScoreLabel(analysis.overall_score || 5)}
-                  </p>
                 </div>
                 
                 {/* Skin Type and Age */}

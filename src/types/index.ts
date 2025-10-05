@@ -149,7 +149,8 @@ export interface AnalysisResults {
     dark_circles_score?: number
     skin_age_estimate?: number
     skin_type?: string
-    overall_score?: number
+    overall_level?: string
+    overall_summary?: string
   }
   detailed_analysis?: {
     strengths?: string[]

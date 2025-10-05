@@ -88,18 +88,19 @@ export function useSkinAnalysis() {
         const demoResults = {
           analysis_id: 'demo-' + Date.now(),
           analysis: {
-            wrinkles_score: 8,  // Inverted: 8/10 = Good (was 4/10)
-            spots_score: 4,     // Inverted: 4/10 = Fair (was 6/10)
-            acne_score: 8,      // Inverted: 8/10 = Good (was 2/10)
-            texture_score: 6,   // Inverted: 6/10 = Good (was 5/10)
-            hydration_score: 4, // Inverted: 4/10 = Fair (was 6/10)
-            sebum_score: 6,     // Inverted: 6/10 = Good (was 4/10)
-            pores_score: 5,     // Inverted: 5/10 = Fair (was 5/10)
-            redness_score: 7,   // Inverted: 7/10 = Good (was 3/10)
-            dark_circles_score: 6, // Inverted: 6/10 = Good (was 4/10)
+            wrinkles_score: 2,  // 2/10 = minimal wrinkles (Excellent)
+            spots_score: 5,     // 5/10 = some dark spots (Good)
+            acne_score: 3,      // 3/10 = minor acne (Excellent)
+            texture_score: 4,   // 4/10 = slight unevenness (Good)
+            hydration_score: 5, // 5/10 = some dryness (Good)
+            sebum_score: 4,     // 4/10 = slight oil (Good)
+            pores_score: 6,     // 6/10 = some enlarged pores (Fair)
+            redness_score: 3,   // 3/10 = minimal redness (Excellent)
+            dark_circles_score: 5, // 5/10 = some dark circles (Good)
             skin_age_estimate: 32,
             skin_type: 'combination',
-            overall_score: 6    // Inverted: 6/10 = Good (was 4/10)
+            overall_level: 'Good',
+            overall_summary: 'Your skin shows good overall health with minimal fine lines and well-maintained hydration. Some attention to pores and dark spots would be beneficial.'
           },
           detailed_analysis: {
             strengths: [

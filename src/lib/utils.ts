@@ -63,25 +63,25 @@ export function sleep(ms: number): Promise<void> {
 }
 
 export function getScoreColor(score: number): string {
-  // Higher score = better (10=excellent, 1=poor)
-  if (score >= 8) return 'text-emerald-600'
-  if (score >= 6) return 'text-amber-600'
-  if (score >= 4) return 'text-orange-600'
+  // Higher score = more issues (10=severe, 1=minimal)
+  if (score <= 3) return 'text-emerald-600'
+  if (score <= 5) return 'text-amber-600'
+  if (score <= 7) return 'text-orange-600'
   return 'text-red-600'
 }
 
 export function getScoreBgColor(score: number): string {
-  // Higher score = better (10=excellent, 1=poor)
-  if (score >= 8) return 'bg-emerald-100 border-emerald-200'
-  if (score >= 6) return 'bg-amber-100 border-amber-200'
-  if (score >= 4) return 'bg-orange-100 border-orange-200'
+  // Higher score = more issues (10=severe, 1=minimal)
+  if (score <= 3) return 'bg-emerald-100 border-emerald-200'
+  if (score <= 5) return 'bg-amber-100 border-amber-200'
+  if (score <= 7) return 'bg-orange-100 border-orange-200'
   return 'bg-red-100 border-red-200'
 }
 
 export function getScoreLabel(score: number): string {
-  // Higher score = better (10=excellent, 1=poor)
-  if (score >= 8) return 'Excellent'
-  if (score >= 6) return 'Good'
-  if (score >= 4) return 'Fair'
+  // Higher score = more issues (10=severe, 1=minimal)
+  if (score <= 3) return 'Excellent'
+  if (score <= 5) return 'Good'
+  if (score <= 7) return 'Fair'
   return 'Needs Attention'
 }

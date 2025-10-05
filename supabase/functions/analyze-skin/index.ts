@@ -31,19 +31,20 @@ serve(async (req) => {
     const systemPrompt = `You are an expert dermatologist AI assistant specialized in skin analysis. 
 Analyze the provided skin image and questionnaire data to provide a comprehensive skin assessment.
 
-Return a detailed analysis with scores from 1-10 for each metric (where 10 is excellent and 1 is needs attention):
-- wrinkles_score: Fine lines and wrinkles (10=no wrinkles, 1=many deep wrinkles)
-- spots_score: Dark spots, hyperpigmentation (10=clear skin, 1=significant spots)
-- acne_score: Active acne, breakouts (10=clear skin, 1=severe acne)
-- texture_score: Skin smoothness (10=very smooth, 1=very rough)
-- hydration_score: Moisture level (10=well hydrated, 1=very dry)
-- sebum_score: Oil balance (10=balanced, 1=very oily or very dry)
-- pores_score: Pore visibility (10=minimal pores, 1=very enlarged pores)
-- redness_score: Inflammation, sensitivity (10=calm skin, 1=very inflamed)
-- dark_circles_score: Under-eye area (10=no dark circles, 1=severe dark circles)
+Return a detailed analysis with scores from 1-10 for each metric (where the score represents the AMOUNT/SEVERITY of the issue):
+- wrinkles_score: Amount of fine lines and wrinkles (1=minimal, 10=severe)
+- spots_score: Amount of dark spots and hyperpigmentation (1=minimal, 10=severe)
+- acne_score: Amount of active acne and breakouts (1=minimal, 10=severe)
+- texture_score: Unevenness in skin texture (1=very smooth, 10=very rough)
+- hydration_score: Level of dryness (1=well hydrated, 10=very dry)
+- sebum_score: Oil production issues (1=balanced, 10=very oily or very dry)
+- pores_score: Enlarged pores visibility (1=minimal, 10=very enlarged)
+- redness_score: Inflammation and redness (1=calm, 10=very inflamed)
+- dark_circles_score: Under-eye circles severity (1=minimal, 10=severe)
 - skin_age_estimate: Estimated skin age in years
 - skin_type: One of: normal, dry, oily, combination, sensitive
-- overall_score: Overall skin health (10=excellent, 1=poor)
+- overall_level: One of: "Excellent", "Good", "Fair", "Needs Attention"
+- overall_summary: A brief 1-2 sentence summary of overall skin health
 
 Also provide:
 - strengths: Array of 2-3 positive aspects of the skin
@@ -93,7 +94,8 @@ Consider the questionnaire data if provided (skin concerns, lifestyle factors, e
                 dark_circles_score: { type: 'number', minimum: 1, maximum: 10 },
                 skin_age_estimate: { type: 'number' },
                 skin_type: { type: 'string', enum: ['normal', 'dry', 'oily', 'combination', 'sensitive'] },
-                overall_score: { type: 'number', minimum: 1, maximum: 10 },
+                overall_level: { type: 'string', enum: ['Excellent', 'Good', 'Fair', 'Needs Attention'] },
+                overall_summary: { type: 'string' },
                 strengths: { type: 'array', items: { type: 'string' } },
                 concerns: { type: 'array', items: { type: 'string' } },
                 recommendations: { type: 'array', items: { type: 'string' } }
@@ -101,7 +103,7 @@ Consider the questionnaire data if provided (skin concerns, lifestyle factors, e
               required: [
                 'wrinkles_score', 'spots_score', 'acne_score', 'texture_score',
                 'hydration_score', 'sebum_score', 'pores_score', 'redness_score',
-                'dark_circles_score', 'skin_age_estimate', 'skin_type', 'overall_score',
+                'dark_circles_score', 'skin_age_estimate', 'skin_type', 'overall_level', 'overall_summary',
                 'strengths', 'concerns', 'recommendations'
               ]
             }
@@ -156,7 +158,8 @@ Consider the questionnaire data if provided (skin concerns, lifestyle factors, e
         dark_circles_score: analysisData.dark_circles_score,
         skin_age_estimate: analysisData.skin_age_estimate,
         skin_type: analysisData.skin_type,
-        overall_score: analysisData.overall_score
+        overall_level: analysisData.overall_level,
+        overall_summary: analysisData.overall_summary
       },
       detailed_analysis: {
         strengths: analysisData.strengths,

@@ -71,7 +71,7 @@ export function ResultsSection({
           <div className="text-center py-20">
             <div className="w-20 h-20 mx-auto mb-8">
               <img 
-                src="/src/assets/dermaeco-logo-new.png" 
+                src="@/assets/dermaeco-logo-new.png" 
                 alt="DermaEco" 
                 className="w-full h-full object-contain"
               />

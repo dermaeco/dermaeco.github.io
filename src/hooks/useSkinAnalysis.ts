@@ -79,7 +79,59 @@ export function useSkinAnalysis() {
     
     setIsAnalyzing(true)
     try {
-      // Call AI-powered skin analysis Edge Function
+      if (isGuest) {
+        // For guest mode, provide a demo analysis result
+        await new Promise(resolve => setTimeout(resolve, 3000)) // Simulate processing time
+        
+        const demoResults = {
+          analysis_id: 'demo-' + Date.now(),
+          analysis: {
+            wrinkles_score: 4,
+            spots_score: 6,
+            acne_score: 2,
+            texture_score: 5,
+            hydration_score: 6,
+            sebum_score: 4,
+            pores_score: 5,
+            redness_score: 3,
+            dark_circles_score: 4,
+            skin_age_estimate: 32,
+            skin_type: 'combination',
+            overall_score: 4
+          },
+          detailed_analysis: {
+            strengths: [
+              'Good overall skin condition',
+              'Minimal acne and irritation',
+              'Healthy skin barrier function'
+            ],
+            concerns: [
+              'Some visible dark spots that could benefit from brightening treatments',
+              'Mild dehydration affecting skin plumpness',
+              'Fine lines beginning to appear in expression areas'
+            ],
+            recommendations: [
+              'Use a daily Vitamin C serum to address hyperpigmentation and brighten skin',
+              'Incorporate a gentle retinol treatment 2-3 times per week',
+              'Hydrate with hyaluronic acid serum and drink plenty of water',
+              'Always use broad-spectrum SPF 30+ sunscreen daily',
+              'Consider gentle chemical exfoliation 1-2 times per week'
+            ]
+          },
+          lifestyle_impact: {
+            sleep_factor: questionnaire?.sleep_hours ? `${questionnaire.sleep_hours} hours of sleep is beneficial for skin recovery` : 'Good sleep quality supports skin health',
+            stress_factor: questionnaire?.stress_level ? `Stress level of ${questionnaire.stress_level}/10 - consider stress management for optimal skin health` : 'Managing stress helps maintain healthy skin',
+            diet_factor: questionnaire?.diet_type ? `${questionnaire.diet_type} diet supports overall skin wellness` : 'Balanced nutrition promotes healthy skin'
+          },
+          processing_time: 'Demo analysis completed'
+        }
+        
+        setAnalysisResults(demoResults)
+        toast.success('Demo analysis completed!')
+        return demoResults
+      }
+      
+      // Call AI-powered skin analysis Edge Function for authenticated users
       const { data, error } = await supabase.functions.invoke('analyze-skin', {
         body: {
           imageUrl,

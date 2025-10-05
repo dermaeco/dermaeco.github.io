@@ -54,26 +54,7 @@ export function ResultsSection({
     return text
   }
   
-  if (!results) {
-    return (
-      <section className="wabi-section">
-        <div className="wabi-container max-w-4xl">
-          <div className="text-center">
-            <h2 className="text-2xl font-serif font-semibold text-stone-900 mb-4">
-              分析结果未找到
-            </h2>
-            <p className="text-stone-600 mb-6">请重新进行分析</p>
-            {onBack && (
-              <Button onClick={onBack} variant="outline">
-                返回
-              </Button>
-            )}
-          </div>
-        </div>
-      </section>
-    )
-  }
-  
+  // Check loading state FIRST before checking for results
   if (isLoading) {
     return (
       <section className="wabi-section">
@@ -102,6 +83,27 @@ export function ResultsSection({
                 <span className="text-sm">{t('results.ai_working')}</span>
               </motion.div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+  
+  // Then check if results exist
+  if (!results) {
+    return (
+      <section className="wabi-section">
+        <div className="wabi-container max-w-4xl">
+          <div className="text-center">
+            <h2 className="text-2xl font-serif font-semibold text-stone-900 mb-4">
+              {t('results.no_results_title')}
+            </h2>
+            <p className="text-stone-600 mb-6">{t('results.no_results_desc')}</p>
+            {onBack && (
+              <Button onClick={onBack} variant="outline">
+                {t('common.back')}
+              </Button>
+            )}
           </div>
         </div>
       </section>

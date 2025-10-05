@@ -119,6 +119,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (error) {
         throw error
       }
+      // Clear all user data and analysis data
+      setUser(null)
+      setSession(null)
+      // Clear any stored analysis data from localStorage
+      localStorage.removeItem('guestMode')
+      localStorage.removeItem('test_user')
     } catch (error: any) {
       toast.error(error.message || 'Sign out failed')
       throw error

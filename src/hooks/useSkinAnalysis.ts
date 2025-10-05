@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from '@/contexts/AuthContext'
 import { useGuestMode } from '@/hooks/useGuestMode'
 import { supabase } from '@/lib/supabase'
@@ -30,6 +30,14 @@ export function useSkinAnalysis() {
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null)
   const [analysisResults, setAnalysisResults] = useState<AnalysisResults | null>(null)
+
+  // Clear analysis data when user logs out
+  useEffect(() => {
+    if (!user && !isGuest) {
+      setUploadedImageUrl(null)
+      setAnalysisResults(null)
+    }
+  }, [user, isGuest])
 
   async function uploadImage(file: File): Promise<string> {
     if (!user && !isGuest) throw new Error('User not authenticated')

@@ -157,8 +157,10 @@ export function useSkinAnalysis() {
         ...data
       }
       
+      console.log('✅ Setting analysis results:', results)
       setAnalysisResults(results)
       setCurrentAnalysisId(results.analysis_id)
+      console.log('✅ Analysis state updated')
 
       // Save analysis to database for authenticated users
       if (user) {
@@ -187,9 +189,11 @@ export function useSkinAnalysis() {
       
       return results
     } catch (error: any) {
+      console.error('❌ Analysis error:', error)
       toast.error(error.message || 'Analysis failed')
       throw error
     } finally {
+      console.log('🏁 Setting isAnalyzing to false')
       setIsAnalyzing(false)
     }
   }

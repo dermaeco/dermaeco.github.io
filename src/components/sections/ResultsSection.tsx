@@ -39,6 +39,13 @@ export function ResultsSection({
 }: ResultsSectionProps) {
   const { t } = useTranslation()
   
+  // Debug logging
+  console.log('📊 ResultsSection render:', { 
+    hasResults: !!results, 
+    isLoading, 
+    resultsKeys: results ? Object.keys(results) : [] 
+  })
+  
   // Helper function to translate demo keys
   const translateIfKey = (text: string): string => {
     if (!text) return text

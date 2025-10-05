@@ -138,7 +138,12 @@ const resources = {
       
       // Results
       'results.title': 'Your Skin Analysis Results',
+      'results.analyzing': 'Analyzing Your Skin',
+      'results.analyzing_desc': 'Our AI is carefully analyzing your photo to provide personalized insights',
+      'results.ai_working': 'AI analysis in progress...',
       'results.processing': 'Analyzing your skin...',
+      'results.no_results_title': 'No Results Available',
+      'results.no_results_desc': 'Complete the questionnaire to get your analysis results',
       'results.overall_score': 'Overall Skin Health Score',
       'results.skin_type': 'Skin Type',
       'results.skin_age': 'Estimated Skin Age',

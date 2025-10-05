@@ -77,7 +77,7 @@ export function ProfileSection({ onViewAnalysis, onCompare, onBack }: ProfileSec
 
     if (error) {
       console.error('Error fetching analyses:', error)
-      toast.error('Failed to load analysis history')
+      toast.error(t('profile.load_failed'))
     } else {
       setAnalyses(data || [])
     }
@@ -85,7 +85,7 @@ export function ProfileSection({ onViewAnalysis, onCompare, onBack }: ProfileSec
   }
 
   const handleDeleteAnalysis = async (analysisId: string) => {
-    if (!confirm('Are you sure you want to delete this analysis?')) return
+    if (!confirm(t('profile.confirm_delete'))) return
 
     const { error } = await supabase
       .from('skin_analyses')
@@ -93,9 +93,9 @@ export function ProfileSection({ onViewAnalysis, onCompare, onBack }: ProfileSec
       .eq('id', analysisId)
 
     if (error) {
-      toast.error('Failed to delete analysis')
+      toast.error(t('profile.delete_failed'))
     } else {
-      toast.success('Analysis deleted successfully')
+      toast.success(t('profile.delete_success'))
       fetchAnalyses()
     }
   }
@@ -107,12 +107,12 @@ export function ProfileSection({ onViewAnalysis, onCompare, onBack }: ProfileSec
           <div className="text-center py-12">
             <AlertCircle className="w-12 h-12 text-stone-400 mx-auto mb-4" />
             <h2 className="text-2xl font-serif font-semibold text-stone-900 mb-4">
-              Sign In Required
+              {t('profile.signin_required')}
             </h2>
             <p className="text-stone-600 mb-6">
-              Please sign in to view your profile and analysis history
+              {t('profile.signin_description')}
             </p>
-            <Button onClick={onBack}>Go Back</Button>
+            <Button onClick={onBack}>{t('common.back')}</Button>
           </div>
         </div>
       </section>
@@ -130,12 +130,12 @@ export function ProfileSection({ onViewAnalysis, onCompare, onBack }: ProfileSec
           {/* Header */}
           <div className="mb-8">
             <Button onClick={onBack} variant="outline" className="mb-4">
-              ← Back
+              ← {t('common.back')}
             </Button>
             <h1 className="text-3xl md:text-4xl font-serif font-semibold text-stone-900 mb-2">
-              My Profile
+              {t('profile.title')}
             </h1>
-            <p className="text-stone-600">Manage your account and view your skin analysis history</p>
+            <p className="text-stone-600">{t('profile.subtitle')}</p>
           </div>
 
           {/* Profile Card */}
@@ -143,23 +143,23 @@ export function ProfileSection({ onViewAnalysis, onCompare, onBack }: ProfileSec
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <User className="w-5 h-5" />
-                Account Information
+                {t('profile.account_info')}
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div>
-                  <label className="text-sm text-stone-600">Email</label>
+                  <label className="text-sm text-stone-600">{t('profile.email')}</label>
                   <p className="font-medium text-stone-900">{user.email}</p>
                 </div>
                 <div>
-                  <label className="text-sm text-stone-600">Name</label>
+                  <label className="text-sm text-stone-600">{t('profile.name')}</label>
                   <p className="font-medium text-stone-900">
-                    {profile?.full_name || 'Not set'}
+                    {profile?.full_name || t('profile.not_set')}
                   </p>
                 </div>
                 <div>
-                  <label className="text-sm text-stone-600">Member Since</label>
+                  <label className="text-sm text-stone-600">{t('profile.member_since')}</label>
                   <p className="font-medium text-stone-900">
                     {format(new Date(user.created_at || Date.now()), 'MMMM yyyy')}
                   </p>
@@ -174,11 +174,11 @@ export function ProfileSection({ onViewAnalysis, onCompare, onBack }: ProfileSec
               <div className="flex items-center justify-between">
                 <CardTitle className="flex items-center gap-2">
                   <Calendar className="w-5 h-5" />
-                  Analysis History ({analyses.length})
+                  {t('profile.analysis_history')} ({analyses.length})
                 </CardTitle>
                 {analyses.length >= 2 && (
                   <Button onClick={onCompare} variant="outline" size="sm">
-                    Compare Analyses
+                    {t('profile.compare')}
                   </Button>
                 )}
               </div>
@@ -187,13 +187,13 @@ export function ProfileSection({ onViewAnalysis, onCompare, onBack }: ProfileSec
               {loading ? (
                 <div className="text-center py-8">
                   <div className="animate-spin w-8 h-8 border-4 border-gray-200 border-t-stone-900 rounded-full mx-auto mb-4" />
-                  <p className="text-stone-600">Loading your analyses...</p>
+                  <p className="text-stone-600">{t('profile.loading_analyses')}</p>
                 </div>
               ) : analyses.length === 0 ? (
                 <div className="text-center py-8">
-                  <p className="text-stone-600 mb-4">No analyses yet</p>
+                  <p className="text-stone-600 mb-4">{t('profile.no_analyses')}</p>
                   <Button onClick={() => onViewAnalysis('new')}>
-                    Start Your First Analysis
+                    {t('profile.start_first_analysis')}
                   </Button>
                 </div>
               ) : (
@@ -230,17 +230,17 @@ export function ProfileSection({ onViewAnalysis, onCompare, onBack }: ProfileSec
                                   analysisData.overall_level === 'Fair' ? 'bg-orange-100 text-orange-700' :
                                   'bg-red-100 text-red-700'
                                 }`}>
-                                  {analysisData.overall_level || 'N/A'}
+                                  {analysisData.overall_level || t('profile.na')}
                                 </span>
                               </div>
 
                               <p className="text-sm text-stone-600 line-clamp-2">
-                                {analysisData.overall_summary || 'No summary available'}
+                                {analysisData.overall_summary || t('profile.no_summary')}
                               </p>
 
                               {analysisData.skin_type && (
                                 <p className="text-xs text-stone-500">
-                                  Skin Type: <span className="font-medium capitalize">{analysisData.skin_type}</span>
+                                  {t('profile.skin_type')}: <span className="font-medium capitalize">{t(`skin_type.${analysisData.skin_type}`)}</span>
                                 </p>
                               )}
                             </div>
@@ -254,7 +254,7 @@ export function ProfileSection({ onViewAnalysis, onCompare, onBack }: ProfileSec
                                 onClick={() => onViewAnalysis(analysis.id)}
                               >
                                 <Eye className="w-3 h-3 mr-1" />
-                                View
+                                {t('profile.view_analysis')}
                               </Button>
                               <Button
                                 size="sm"

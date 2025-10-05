@@ -134,6 +134,7 @@ export function useSkinAnalysis() {
         }
         
         setAnalysisResults(demoResults)
+        setIsAnalyzing(false)
         toast.success(t('toast.demo_analysis_complete'))
         return demoResults
       }
@@ -150,7 +151,10 @@ export function useSkinAnalysis() {
 
       console.log('🤖 AI response:', { data, error })
 
-      if (error) throw error
+      if (error) {
+        setIsAnalyzing(false)
+        throw error
+      }
       
       const results = {
         analysis_id: 'analysis-' + Date.now(),
@@ -187,14 +191,16 @@ export function useSkinAnalysis() {
         toast.success('AI analysis completed!')
       }
       
+      // Important: Set isAnalyzing to false AFTER all state updates
+      setIsAnalyzing(false)
+      console.log('🏁 Analysis complete, loading state cleared')
+      
       return results
     } catch (error: any) {
       console.error('❌ Analysis error:', error)
+      setIsAnalyzing(false)
       toast.error(error.message || 'Analysis failed')
       throw error
-    } finally {
-      console.log('🏁 Setting isAnalyzing to false')
-      setIsAnalyzing(false)
     }
   }
 

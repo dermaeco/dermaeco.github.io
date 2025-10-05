@@ -82,12 +82,12 @@ export function QuestionnaireSection({ onComplete, onBack, isAnalyzing }: Questi
   ]
   
   const environmentalFactors = [
-    { value: 'pollution', label: 'Air Pollution' },
-    { value: 'sun_exposure', label: 'High Sun Exposure' },
-    { value: 'dry_climate', label: 'Dry Climate' },
-    { value: 'humid_climate', label: 'Humid Climate' },
-    { value: 'air_conditioning', label: 'Frequent AC Use' },
-    { value: 'heating', label: 'Central Heating' }
+    { value: 'pollution', label: t('environment.pollution') },
+    { value: 'sun_exposure', label: t('environment.sun_exposure') },
+    { value: 'dry_climate', label: t('environment.dry_climate') },
+    { value: 'humid_climate', label: t('environment.humid_climate') },
+    { value: 'air_conditioning', label: t('environment.air_conditioning') },
+    { value: 'heating', label: t('environment.heating') }
   ]
   
   const handleConcernToggle = (concern: string) => {
@@ -335,7 +335,7 @@ export function QuestionnaireSection({ onComplete, onBack, isAnalyzing }: Questi
                   <textarea
                     value={formData.current_skincare_routine}
                     onChange={(e) => setFormData(prev => ({ ...prev, current_skincare_routine: e.target.value }))}
-                    placeholder="Describe your current skincare routine..."
+                    placeholder={t('questionnaire.skincare_placeholder')}
                     className="w-full p-4 bg-white/60 border border-stone-200/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-300 h-24 resize-none"
                   />
                 </div>

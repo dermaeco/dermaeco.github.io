@@ -83,11 +83,20 @@ const resources = {
       'questionnaire.diet': 'What\'s your diet type?',
       'questionnaire.exercise': 'How often do you exercise?',
       'questionnaire.skincare': 'Current skincare routine',
+      'questionnaire.skincare_placeholder': 'Describe your current skincare routine...',
       'questionnaire.concerns': 'Main skin concerns',
       'questionnaire.smoking': 'Smoking status',
       'questionnaire.alcohol': 'Alcohol consumption',
       'questionnaire.environment': 'Environmental factors',
       'questionnaire.submit': 'Complete Analysis',
+      
+      // Environmental factors
+      'environment.pollution': 'Air Pollution',
+      'environment.sun_exposure': 'High Sun Exposure',
+      'environment.dry_climate': 'Dry Climate',
+      'environment.humid_climate': 'Humid Climate',
+      'environment.air_conditioning': 'Frequent AC Use',
+      'environment.heating': 'Central Heating',
       
       // Diet options
       'diet.balanced': 'Balanced',
@@ -322,11 +331,20 @@ const resources = {
       'questionnaire.diet': 'Was ist Ihr Ernährungstyp?',
       'questionnaire.exercise': 'Wie oft trainieren Sie?',
       'questionnaire.skincare': 'Aktuelle Hautpflegeroutine',
+      'questionnaire.skincare_placeholder': 'Beschreiben Sie Ihre aktuelle Hautpflegeroutine...',
       'questionnaire.concerns': 'Hauptprobleme der Haut',
       'questionnaire.smoking': 'Raucherstatus',
       'questionnaire.alcohol': 'Alkoholkonsum',
       'questionnaire.environment': 'Umweltfaktoren',
       'questionnaire.submit': 'Analyse abschließen',
+      
+      // Environmental factors
+      'environment.pollution': 'Luftverschmutzung',
+      'environment.sun_exposure': 'Hohe Sonneneinstrahlung',
+      'environment.dry_climate': 'Trockenes Klima',
+      'environment.humid_climate': 'Feuchtes Klima',
+      'environment.air_conditioning': 'Häufige Klimaanlagennutzung',
+      'environment.heating': 'Zentralheizung',
       
       // Diet options
       'diet.balanced': 'Ausgewogen',
@@ -544,11 +562,20 @@ const resources = {
       'questionnaire.diet': 'Quel est votre type de régime?',
       'questionnaire.exercise': 'À quelle fréquence faites-vous de l\'exercice?',
       'questionnaire.skincare': 'Routine de soins actuelle',
+      'questionnaire.skincare_placeholder': 'Décrivez votre routine de soins actuelle...',
       'questionnaire.concerns': 'Principales préoccupations cutanées',
       'questionnaire.smoking': 'Statut tabagique',
       'questionnaire.alcohol': 'Consommation d\'alcool',
       'questionnaire.environment': 'Facteurs environnementaux',
       'questionnaire.submit': 'Terminer l\'analyse',
+      
+      // Environmental factors
+      'environment.pollution': 'Pollution atmosphérique',
+      'environment.sun_exposure': 'Exposition solaire élevée',
+      'environment.dry_climate': 'Climat sec',
+      'environment.humid_climate': 'Climat humide',
+      'environment.air_conditioning': 'Utilisation fréquente de la climatisation',
+      'environment.heating': 'Chauffage central',
       
       // Diet options
       'diet.balanced': 'Équilibré',
@@ -766,11 +793,20 @@ const resources = {
       'questionnaire.diet': '饮食类型',
       'questionnaire.exercise': '运动频率',
       'questionnaire.skincare': '当前护肤流程',
+      'questionnaire.skincare_placeholder': '描述您当前的护肤流程...',
       'questionnaire.concerns': '主要皮肤问题',
       'questionnaire.smoking': '吸烟状况',
       'questionnaire.alcohol': '饮酒情况',
       'questionnaire.environment': '环境因素',
       'questionnaire.submit': '提交',
+      
+      // Environmental factors
+      'environment.pollution': '空气污染',
+      'environment.sun_exposure': '高度日晒',
+      'environment.dry_climate': '干燥气候',
+      'environment.humid_climate': '潮湿气候',
+      'environment.air_conditioning': '频繁使用空调',
+      'environment.heating': '集中供暖',
       
       // Diet options
       'diet.balanced': '均衡',

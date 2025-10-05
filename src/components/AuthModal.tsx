@@ -36,6 +36,19 @@ export function AuthModal({ isOpen, onClose, mode = 'signin', onModeChange }: Au
     setError('')
     
     try {
+      // Demo account exception - bypass normal auth for testing
+      if (email === 'admin@demo.com' && password === 'admin123' && authMode === 'signin') {
+        // Create a mock user session for demo account
+        localStorage.setItem('test_user', JSON.stringify({
+          id: 'demo-user-123',
+          email: 'admin@demo.com',
+          created_at: new Date().toISOString()
+        }))
+        enableGuestMode() // Enable guest mode for full functionality
+        onClose()
+        return
+      }
+      
       
       if (authMode === 'signup') {
         if (password !== confirmPassword) {

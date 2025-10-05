@@ -4,8 +4,16 @@ export function useGuestMode() {
   const [isGuest, setIsGuest] = useState(false)
   
   useEffect(() => {
-    const guestSession = localStorage.getItem('guest_session')
-    setIsGuest(guestSession === 'true')
+    const checkGuestMode = () => {
+      const guestSession = localStorage.getItem('guest_session')
+      setIsGuest(guestSession === 'true')
+    }
+    
+    checkGuestMode()
+    
+    // Listen for storage changes to react to login/logout
+    window.addEventListener('storage', checkGuestMode)
+    return () => window.removeEventListener('storage', checkGuestMode)
   }, [])
   
   const enableGuestMode = () => {

@@ -81,6 +81,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (error) {
         throw error
       }
+      // Clear guest mode when user signs in
+      localStorage.removeItem('guest_session')
     } catch (error: any) {
       toast.error(error.message || 'Sign in failed')
       throw error
@@ -102,6 +104,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (error) {
         throw error
       }
+      // Clear guest mode when user signs up
+      localStorage.removeItem('guest_session')
       toast.success('Account created! Check your email for verification link.')
     } catch (error: any) {
       console.error('Sign up error:', error)

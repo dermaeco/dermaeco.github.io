@@ -11,7 +11,7 @@ serve(async (req) => {
   }
 
   try {
-    const { imageUrl, questionnaire } = await req.json();
+    const { imageUrl, questionnaire, language = 'en' } = await req.json();
     
     if (!imageUrl) {
       return new Response(
@@ -19,6 +19,15 @@ serve(async (req) => {
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
+    
+    // Language mapping for AI
+    const languageMap: Record<string, string> = {
+      'en': 'English',
+      'de': 'German',
+      'fr': 'French',
+      'zh': 'Chinese'
+    };
+    const targetLanguage = languageMap[language] || 'English';
 
     const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
     if (!LOVABLE_API_KEY) {
@@ -30,6 +39,8 @@ serve(async (req) => {
     // Build the analysis prompt
     const systemPrompt = `You are an expert dermatologist AI assistant specialized in skin analysis. 
 Analyze the provided skin image and questionnaire data to provide a comprehensive skin assessment.
+
+IMPORTANT: Respond in ${targetLanguage}. All text fields (overall_summary, strengths, concerns, recommendations) must be in ${targetLanguage}.
 
 Return a detailed analysis with scores from 1-10 for each metric (where the score represents the AMOUNT/SEVERITY of the issue):
 - wrinkles_score: Amount of fine lines and wrinkles (1=minimal, 10=severe)
@@ -44,9 +55,9 @@ Return a detailed analysis with scores from 1-10 for each metric (where the scor
 - skin_age_estimate: Estimated skin age in years
 - skin_type: One of: normal, dry, oily, combination, sensitive
 - overall_level: One of: "Excellent", "Good", "Fair", "Needs Attention"
-- overall_summary: A brief 1-2 sentence summary of overall skin health
+- overall_summary: A brief 1-2 sentence summary of overall skin health (IN ${targetLanguage})
 
-Also provide:
+Also provide (ALL IN ${targetLanguage}):
 - strengths: Array of 2-3 positive aspects of the skin
 - concerns: Array of 2-3 areas that need attention
 - recommendations: Array of 3-5 actionable skincare recommendations

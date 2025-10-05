@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '@/contexts/AuthContext'
 import { useGuestMode } from '@/hooks/useGuestMode'
 import { supabase } from '@/lib/supabase'
@@ -24,6 +25,7 @@ interface QuestionnaireData {
 }
 
 export function useSkinAnalysis() {
+  const { t, i18n } = useTranslation()
   const { user } = useAuth()
   const { isGuest } = useGuestMode()
   const [isUploading, setIsUploading] = useState(false)
@@ -101,37 +103,37 @@ export function useSkinAnalysis() {
             skin_age_estimate: 32,
             skin_type: 'combination',
             overall_level: 'Good',
-            overall_summary: 'Your skin shows good overall health with minimal fine lines and well-maintained hydration. Some attention to pores and dark spots would be beneficial.'
+            overall_summary: t('demo.overall_summary')
           },
           detailed_analysis: {
             strengths: [
-              'Good overall skin condition',
-              'Minimal acne and irritation',
-              'Healthy skin barrier function'
+              t('demo.strength1'),
+              t('demo.strength2'),
+              t('demo.strength3')
             ],
             concerns: [
-              'Some visible dark spots that could benefit from brightening treatments',
-              'Mild dehydration affecting skin plumpness',
-              'Fine lines beginning to appear in expression areas'
+              t('demo.concern1'),
+              t('demo.concern2'),
+              t('demo.concern3')
             ],
             recommendations: [
-              'Use a daily Vitamin C serum to address hyperpigmentation and brighten skin',
-              'Incorporate a gentle retinol treatment 2-3 times per week',
-              'Hydrate with hyaluronic acid serum and drink plenty of water',
-              'Always use broad-spectrum SPF 30+ sunscreen daily',
-              'Consider gentle chemical exfoliation 1-2 times per week'
+              t('demo.recommendation1'),
+              t('demo.recommendation2'),
+              t('demo.recommendation3'),
+              t('demo.recommendation4'),
+              t('demo.recommendation5')
             ]
           },
           lifestyle_impact: {
-            sleep_factor: questionnaire?.sleep_hours ? `${questionnaire.sleep_hours} hours of sleep is beneficial for skin recovery` : 'Good sleep quality supports skin health',
-            stress_factor: questionnaire?.stress_level ? `Stress level of ${questionnaire.stress_level}/10 - consider stress management for optimal skin health` : 'Managing stress helps maintain healthy skin',
-            diet_factor: questionnaire?.diet_type ? `${questionnaire.diet_type} diet supports overall skin wellness` : 'Balanced nutrition promotes healthy skin'
+            sleep_factor: questionnaire?.sleep_hours ? t('demo.sleep_factor', { hours: questionnaire.sleep_hours }) : t('demo.sleep_generic'),
+            stress_factor: questionnaire?.stress_level ? t('demo.stress_factor', { level: questionnaire.stress_level }) : t('demo.stress_generic'),
+            diet_factor: questionnaire?.diet_type ? t('demo.diet_factor', { type: questionnaire.diet_type }) : t('demo.diet_generic')
           },
-          processing_time: 'Demo analysis completed'
+          processing_time: t('demo.processing_complete')
         }
         
         setAnalysisResults(demoResults)
-        toast.success('Demo analysis completed!')
+        toast.success(t('toast.demo_analysis_complete'))
         return demoResults
       }
       
@@ -140,7 +142,8 @@ export function useSkinAnalysis() {
       const { data, error } = await supabase.functions.invoke('analyze-skin', {
         body: {
           imageUrl,
-          questionnaire
+          questionnaire,
+          language: i18n.language // Pass current language to AI
         }
       })
 

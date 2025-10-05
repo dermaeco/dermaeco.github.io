@@ -158,7 +158,10 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
                     </p>
                   </div>
                   <Button
-                    onClick={signOut}
+                    onClick={async () => {
+                      await signOut()
+                      // Navigation will be handled by signOut function
+                    }}
                     variant="outline"
                     size="sm"
                     className="text-xs px-3 py-1"
@@ -316,7 +319,10 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
                         <p className="text-xs text-stone-500">{user.email}</p>
                       </div>
                       <Button
-                        onClick={signOut}
+                        onClick={async () => {
+                          await signOut()
+                          // Navigation will be handled by signOut function
+                        }}
                         variant="outline"
                         className="w-full"
                       >

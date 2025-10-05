@@ -125,6 +125,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Clear any stored analysis data from localStorage
       localStorage.removeItem('guestMode')
       localStorage.removeItem('test_user')
+      
+      // Trigger page reload to reset all state and go to homepage
+      window.location.href = '/'
     } catch (error: any) {
       toast.error(error.message || 'Sign out failed')
       throw error

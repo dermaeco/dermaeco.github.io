@@ -4,7 +4,7 @@ import { defineConfig } from "vite"
 import { componentTagger } from "lovable-tagger"
 
 export default defineConfig(({ mode }) => ({
-  base: '/derma-eco.github.io/',
+  base: '/',
   server: {
     host: "::",
     port: 8080,

@@ -119,13 +119,15 @@ function AppContent() {
   const handleQuestionnaireComplete = async (data: QuestionnaireData) => {
     setQuestionnaireData(data)
     
+    // First navigate to results to show loading state
+    setCurrentSection('results')
+    
     if (uploadedImageUrl) {
       try {
         const results = await analyzeImage(uploadedImageUrl, data)
         if (results.analysis_id) {
           setCurrentAnalysisId(results.analysis_id)
         }
-        setCurrentSection('results')
       } catch (error) {
         console.error('Analysis failed:', error)
         toast.error(t('toast.analysis_failed'))
@@ -278,6 +280,7 @@ function AppContent() {
               <ResultsSection 
                 results={analysisResults}
                 imageUrl={uploadedImageUrl}
+                isLoading={isAnalyzing}
                 onViewRecommendations={handleViewRecommendations}
                 onStartOver={() => setCurrentSection('home')}
                 onBack={handleBackToQuestionnaire}

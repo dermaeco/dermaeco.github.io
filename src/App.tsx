@@ -16,11 +16,9 @@ import { QuestionnaireSection } from '@/components/sections/QuestionnaireSection
 import { ResultsSection } from '@/components/sections/ResultsSection'
 import { ProductsSection } from '@/components/sections/ProductsSection'
 import { CommunitySection } from '@/components/sections/CommunitySection'
-import { SmartRoutineSection } from '@/components/sections/SmartRoutineSection'
-import { ProductLibrarySection } from '@/components/sections/ProductLibrarySection'
-import { SmartReminderSection } from '@/components/sections/SmartReminderSection'
 import { MySkinJourneySection } from '@/components/sections/MySkinJourneySection'
 import { OurVisionSection } from '@/components/sections/OurVisionSection'
+import { ProfileSection } from '@/components/sections/ProfileSection'
 import { AuthModal } from '@/components/AuthModal'
 
 // Hooks
@@ -42,7 +40,7 @@ interface QuestionnaireData {
   environmental_factors: string[]
 }
 
-type AppSection = 'home' | 'analysis' | 'community' | 'my-skin-journey' | 'our-vision' | 'upload' | 'questionnaire' | 'results' | 'products' | 'smart-routine' | 'product-library' | 'reminders' | 'skincare-diaries' | 'trending'
+type AppSection = 'home' | 'analysis' | 'community' | 'my-skin-journey' | 'our-vision' | 'upload' | 'questionnaire' | 'results' | 'products' | 'smart-routine' | 'product-library' | 'reminders' | 'skincare-diaries' | 'trending' | 'profile'
 
 // Create a client
 const queryClient = new QueryClient({
@@ -60,16 +58,17 @@ function AppContent() {
   const { isGuest, enableGuestMode } = useGuestMode()
   const [currentSection, setCurrentSection] = useState<AppSection>('home')
   const [questionnaireData, setQuestionnaireData] = useState<QuestionnaireData | null>(null)
-  const [currentAnalysisId, setCurrentAnalysisId] = useState<string | null>(null)
   const [showAuthModal, setShowAuthModal] = useState(false)
   
   const {
     uploadedImageUrl,
     analysisResults,
     isAnalyzing,
+    currentAnalysisId,
     analyzeImage,
     setUploadedImageUrl,
-    setAnalysisResults
+    setAnalysisResults,
+    setCurrentAnalysisId
   } = useSkinAnalysis()
   
   // Enable guest mode automatically for demo purposes, but disable when user logs in
@@ -121,7 +120,9 @@ function AppContent() {
     if (uploadedImageUrl) {
       try {
         const results = await analyzeImage(uploadedImageUrl, data)
-        setCurrentAnalysisId(results.analysis_id)
+        if (results.analysis_id) {
+          setCurrentAnalysisId(results.analysis_id)
+        }
         setCurrentSection('results')
       } catch (error) {
         console.error('Analysis failed:', error)
@@ -180,6 +181,16 @@ function AppContent() {
   // Smart routine handlers
   const handleViewFullRoutine = (routineId: string) => {
     toast.success(t('toast.view_full_routine') + ': ' + routineId)
+  }
+
+  // Profile handlers
+  const handleViewPastAnalysis = (analysisId: string) => {
+    if (analysisId === 'new') {
+      setCurrentSection('upload')
+    } else {
+      // TODO: Load specific analysis and show results
+      toast('Loading analysis... (feature in progress)')
+    }
   }
   
   // Don't show main content if loading
@@ -419,6 +430,22 @@ function AppContent() {
                 onApplyInfluencer={handleApplyInfluencer}
                 onViewProduct={handleViewProduct}
                 initialTab={currentSection === 'skincare-diaries' ? 'diaries' : 'trending'}
+              />
+            </motion.div>
+          )}
+
+          {/* Profile Section */}
+          {currentSection === 'profile' && (
+            <motion.div
+              key="profile"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+            >
+              <ProfileSection
+                onViewAnalysis={handleViewPastAnalysis}
+                onBack={() => setCurrentSection('home')}
               />
             </motion.div>
           )}

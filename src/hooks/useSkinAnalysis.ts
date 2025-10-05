@@ -30,6 +30,7 @@ export function useSkinAnalysis() {
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null)
   const [analysisResults, setAnalysisResults] = useState<AnalysisResults | null>(null)
+  const [currentAnalysisId, setCurrentAnalysisId] = useState<string | null>(null)
 
   // Clear analysis data when user logs out
   useEffect(() => {
@@ -144,6 +145,8 @@ export function useSkinAnalysis() {
       })
 
       console.log('🤖 AI response:', { data, error })
+
+      if (error) throw error
       
       const results = {
         analysis_id: 'analysis-' + Date.now(),
@@ -151,7 +154,33 @@ export function useSkinAnalysis() {
       }
       
       setAnalysisResults(results)
-      toast.success('AI analysis completed!')
+      setCurrentAnalysisId(results.analysis_id)
+
+      // Save analysis to database for authenticated users
+      if (user) {
+        try {
+          const { error: saveError } = await supabase
+            .from('skin_analyses')
+            .insert({
+              user_id: user.id,
+              image_url: imageUrl,
+              analysis_data: results,
+              questionnaire_data: questionnaire
+            })
+
+          if (saveError) {
+            console.error('Error saving analysis:', saveError)
+            toast.error('Analysis completed but failed to save to history')
+          } else {
+            toast.success('AI analysis completed and saved!')
+          }
+        } catch (saveError) {
+          console.error('Error saving analysis:', saveError)
+        }
+      } else {
+        toast.success('AI analysis completed!')
+      }
+      
       return results
     } catch (error: any) {
       toast.error(error.message || 'Analysis failed')
@@ -267,10 +296,12 @@ export function useSkinAnalysis() {
     isAnalyzing,
     uploadedImageUrl,
     analysisResults,
+    currentAnalysisId,
     uploadImage,
     analyzeImage,
     getRecommendations,
     setUploadedImageUrl,
-    setAnalysisResults
+    setAnalysisResults,
+    setCurrentAnalysisId
   }
 }

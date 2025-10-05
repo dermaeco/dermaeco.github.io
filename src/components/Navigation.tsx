@@ -150,6 +150,18 @@ export function Navigation({ currentSection = 'home', onSectionChange }: Navigat
             <div className="flex items-center space-x-4">
               <LanguageSwitcher />
               
+              {user && (
+                <Button
+                  onClick={() => onSectionChange?.('profile')}
+                  variant="ghost"
+                  size="sm"
+                  className="hidden md:flex items-center gap-2"
+                >
+                  <User className="w-4 h-4" />
+                  Profile
+                </Button>
+              )}
+              
               {user ? (
                 <div className="hidden md:flex items-center space-x-3">
                   <div className="text-right">

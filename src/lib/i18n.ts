@@ -863,13 +863,13 @@ const resources = {
       'hero.cta': '开始分析',
       'hero.gdpr': '隐私合规 • 保障个人数据安全',
       'hero.features.aiPowered.title': 'AI智能分析',
-      'hero.features.aiPowered.description': '先进的机器学习算法以临床精度分析您的皮肤',
+      'hero.features.aiPowered.description': '应用先进的机器学习算法，以临床精度分析您的皮肤',
       'hero.features.trusted.title': '共享社区',
-      'hero.features.trusted.description': '与我们不断壮大的护肤爱好者社区联系并分享经验',
+      'hero.features.trusted.description': '加入不断壮大的护肤爱好者社区并分享经验',
       'hero.features.evidenceBased.title': '循证科学',
       'hero.features.evidenceBased.description': '基于皮肤学研究和临床研究的推荐',
       'hero.features.gdpr.title': '隐私保护',
-      'hero.features.gdpr.description': 'GDPR合规，完全数据控制和透明处理',
+      'hero.features.gdpr.description': 'GDPR合规，保障数据隐私，处理流程公开透明',
       
       // Upload Section
       'upload.title': '上传照片',
@@ -1002,13 +1002,13 @@ const resources = {
       
       // Our Vision Page
       'vision.title': '我们的愿景',
-      'vision.subtitle': '通过前沿AI技术改变护肤',
-      'vision.sectionTitle': '我们的核心商业理念',
+      'vision.subtitle': '前沿AI技术改变护肤美容行业',
+      'vision.sectionTitle': '核心商业理念',
       'vision.assumptions.accessible.title': '人人可及的AI智能护肤',
       'vision.assumptions.accessible.description': '我们相信，无论身在何处、预算如何，每个人都应享有专业级的皮肤分析。我们由AI驱动的平台将让护肤专业知识惠及大众。',
       'vision.assumptions.community.title': '社区驱动创新',
       'vision.assumptions.community.description': '真实的用户体验和数据会创造出更好的推荐。我们利用集体智慧不断改进分析和产品建议。',
-      'vision.assumptions.sustainable.title': '可持续美容实践',
+      'vision.assumptions.sustainable.title': '可持续护肤实践',
       'vision.assumptions.sustainable.description': '专注于优先考虑清洁成分和环境保护的品牌。智能推荐将减少浪费，促进理性消费。',
       'vision.gdpr.title': 'GDPR合规与数据保护',
       'vision.gdpr.description': '我们致力于保护您的隐私并确保遵守通用数据保护条例（GDPR）。您的信任是我们的基石。',

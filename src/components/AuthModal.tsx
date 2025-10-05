@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAuth } from '@/contexts/AuthContext'
 import { useGuestMode } from '@/hooks/useGuestMode'
-import { X, Mail, Lock, User } from 'lucide-react'
+import { X, Mail, Lock, User, Leaf } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface AuthModalProps {
@@ -37,11 +37,11 @@ export function AuthModal({ isOpen, onClose, mode = 'signin', onModeChange }: Au
     
     try {
       // Test account check
-      if (email === 'admin' && password === 'admin') {
+      if (email === 'admin@demo.com' && password === 'admin123') {
         // Create a mock user session for test account
         localStorage.setItem('test_user', JSON.stringify({
           id: 'test-user-123',
-          email: 'admin@dermaeco.demo',
+          email: 'admin@demo.com',
           created_at: new Date().toISOString()
         }))
         enableGuestMode() // Also enable guest mode for full functionality
@@ -101,8 +101,8 @@ export function AuthModal({ isOpen, onClose, mode = 'signin', onModeChange }: Au
                 <X className="w-5 h-5" />
               </button>
               
-              <div className="w-8 h-8 bg-black flex items-center justify-center mx-auto mb-6">
-                <span className="text-white font-light text-sm">S</span>
+              <div className="w-8 h-8 bg-emerald-600 flex items-center justify-center mx-auto mb-6 rounded-lg">
+                <Leaf className="text-white w-5 h-5" />
               </div>
               
               <CardTitle className="text-xl font-light tracking-wide">
@@ -127,7 +127,7 @@ export function AuthModal({ isOpen, onClose, mode = 'signin', onModeChange }: Au
                 {authMode === 'signin' && (
                   <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
                     <p className="text-sm text-blue-700 font-medium">Demo Account:</p>
-                    <p className="text-xs text-blue-600 mt-1">Username: admin | Password: admin</p>
+                    <p className="text-xs text-blue-600 mt-1">Email: admin@demo.com | Password: admin123</p>
                   </div>
                 )}
                 

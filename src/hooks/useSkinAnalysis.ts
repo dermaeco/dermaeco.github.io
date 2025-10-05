@@ -60,20 +60,11 @@ export function useSkinAnalysis() {
         return guestImageUrl
       }
 
-      // Upload via Edge Function for authenticated users
-      const { data, error } = await supabase.functions.invoke('photo-upload', {
-        body: {
-          imageData: base64Data,
-          fileName: `${Date.now()}-${file.name}`
-        }
-      })
-
-      if (error) throw error
-      
-      const imageUrl = data.data.publicUrl
-      setUploadedImageUrl(imageUrl)
+      // For authenticated users, store the base64 directly (AI needs base64 format)
+      // We don't need to upload to storage for analysis
+      setUploadedImageUrl(base64Data)
       toast.success('Photo uploaded successfully!')
-      return imageUrl
+      return base64Data
     } catch (error: any) {
       toast.error(error.message || 'Upload failed')
       throw error

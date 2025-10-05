@@ -105,12 +105,12 @@ export function CommunitySection({
           className="text-center mb-8"
         >
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-            {initialTab === 'diaries' ? 'Skincare Diaries' : 'Trending Products'}
+            {initialTab === 'diaries' ? t('community.skincare_diaries') : t('community.trending_products')}
           </h1>
           <p className="text-muted-foreground">
             {initialTab === 'diaries' 
-              ? 'Share your journey and discover what\'s trending'
-              : 'Discover what products are trending in the community'
+              ? t('community.share_discover')
+              : t('community.discover_trending')
             }
           </p>
         </motion.div>
@@ -119,7 +119,7 @@ export function CommunitySection({
         <Card className="mb-6 border-primary/20 bg-primary/5">
           <CardContent className="pt-6">
             <p className="text-center text-sm text-muted-foreground">
-              👋 This is a preview of community features. Sign up to share your own journey and interact with others!
+              👋 {t('community.preview_notice')}
             </p>
           </CardContent>
         </Card>
@@ -162,14 +162,14 @@ export function CommunitySection({
                     <div className="flex items-center gap-4 text-muted-foreground">
                       <button 
                         className="flex items-center gap-1 hover:text-primary transition-colors"
-                        onClick={() => toast('Sign up to like posts!', { icon: '💝' })}
+                        onClick={() => toast(t('community.signup_to_like'), { icon: '💝' })}
                       >
                         <Heart className="w-4 h-4" />
                         <span className="text-sm">{diary.likes}</span>
                       </button>
                       <button 
                         className="flex items-center gap-1 hover:text-primary transition-colors"
-                        onClick={() => toast('Sign up to comment!', { icon: '💬' })}
+                        onClick={() => toast(t('community.signup_to_comment'), { icon: '💬' })}
                       >
                         <MessageCircle className="w-4 h-4" />
                         <span className="text-sm">{diary.comments}</span>
@@ -206,7 +206,7 @@ export function CommunitySection({
                           <span>•</span>
                           <span>{item.price}</span>
                           <span>•</span>
-                          <span>{item.mentions} mentions</span>
+                          <span>{item.mentions} {t('community.mentions')}</span>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 text-green-500 font-semibold">

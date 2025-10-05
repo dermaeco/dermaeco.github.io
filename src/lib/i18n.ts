@@ -216,6 +216,13 @@ const resources = {
       'community.connect': 'Connect with Others',
       'community.skincare_diaries': 'Skincare Diaries',
       'community.trending': 'Trending Topics',
+      'community.trending_products': 'Trending Products',
+      'community.share_discover': 'Share your journey and discover what\'s trending',
+      'community.discover_trending': 'Discover what products are trending in the community',
+      'community.preview_notice': 'This is a preview of community features. Sign up to share your own journey and interact with others!',
+      'community.signup_to_like': 'Sign up to like posts!',
+      'community.signup_to_comment': 'Sign up to comment!',
+      'community.mentions': 'mentions',
       
       // Smart Routine features
       'routine.title': 'Smart Skincare Routine',
@@ -233,6 +240,22 @@ const resources = {
       
       // Reminders
       'reminders.title': 'Reminders',
+
+      // My Skin Journey
+      'journey.smart_routine': 'Smart Routine',
+      'journey.product_library': 'Product Library',
+      'journey.reminders': 'Reminders',
+      'journey.personalized_routine': 'Your personalized skincare routine',
+      'journey.track_products': 'Track your products and progress',
+      'journey.never_miss': 'Never miss your skincare routine',
+      'journey.preview_notice': 'This is a preview. Sign up to create your personalized routine and track your products!',
+      'journey.morning_routine': 'Morning Routine',
+      'journey.evening_routine': 'Evening Routine',
+      'journey.opened': 'Opened',
+      'journey.expires': 'Expires',
+      'journey.expiring_soon': 'Expiring Soon',
+      'journey.active': 'Active',
+      'journey.inactive': 'Inactive',
 
       // Profile & Comparison
       'profile.title': 'My Profile',
@@ -486,6 +509,13 @@ const resources = {
       'community.connect': 'Mit anderen verbinden',
       'community.skincare_diaries': 'Hautpflege-Tagebücher',
       'community.trending': 'Trendthemen',
+      'community.trending_products': 'Trendprodukte',
+      'community.share_discover': 'Teilen Sie Ihre Reise und entdecken Sie, was im Trend liegt',
+      'community.discover_trending': 'Entdecken Sie, welche Produkte in der Community im Trend liegen',
+      'community.preview_notice': 'Dies ist eine Vorschau der Community-Funktionen. Registrieren Sie sich, um Ihre eigene Reise zu teilen und mit anderen zu interagieren!',
+      'community.signup_to_like': 'Registrieren Sie sich, um Beiträge zu liken!',
+      'community.signup_to_comment': 'Registrieren Sie sich, um zu kommentieren!',
+      'community.mentions': 'Erwähnungen',
       
       // Smart Routine features
       'routine.title': 'Intelligente Hautpflegeroutine',
@@ -503,6 +533,22 @@ const resources = {
       
       // Reminders
       'reminders.title': 'Erinnerungen',
+
+      // My Skin Journey
+      'journey.smart_routine': 'Intelligente Routine',
+      'journey.product_library': 'Produktbibliothek',
+      'journey.reminders': 'Erinnerungen',
+      'journey.personalized_routine': 'Ihre personalisierte Hautpflegeroutine',
+      'journey.track_products': 'Verfolgen Sie Ihre Produkte und Fortschritte',
+      'journey.never_miss': 'Verpassen Sie nie Ihre Hautpflegeroutine',
+      'journey.preview_notice': 'Dies ist eine Vorschau. Registrieren Sie sich, um Ihre personalisierte Routine zu erstellen und Ihre Produkte zu verfolgen!',
+      'journey.morning_routine': 'Morgenroutine',
+      'journey.evening_routine': 'Abendroutine',
+      'journey.opened': 'Geöffnet',
+      'journey.expires': 'Läuft ab',
+      'journey.expiring_soon': 'Läuft bald ab',
+      'journey.active': 'Aktiv',
+      'journey.inactive': 'Inaktiv',
       
       // Profile & Comparison
       'profile.title': 'Mein Profil',
@@ -756,6 +802,13 @@ const resources = {
       'community.connect': 'Connectez-vous avec d\'autres',
       'community.skincare_diaries': 'Journaux de soins',
       'community.trending': 'Sujets tendance',
+      'community.trending_products': 'Produits tendance',
+      'community.share_discover': 'Partagez votre parcours et découvrez les tendances',
+      'community.discover_trending': 'Découvrez les produits tendance dans la communauté',
+      'community.preview_notice': 'Ceci est un aperçu des fonctionnalités communautaires. Inscrivez-vous pour partager votre propre parcours et interagir avec les autres!',
+      'community.signup_to_like': 'Inscrivez-vous pour aimer les publications!',
+      'community.signup_to_comment': 'Inscrivez-vous pour commenter!',
+      'community.mentions': 'mentions',
       
       // Smart Routine features
       'routine.title': 'Routine de soins intelligente',
@@ -773,6 +826,22 @@ const resources = {
       
       // Reminders
       'reminders.title': 'Rappels',
+
+      // My Skin Journey
+      'journey.smart_routine': 'Routine intelligente',
+      'journey.product_library': 'Bibliothèque de produits',
+      'journey.reminders': 'Rappels',
+      'journey.personalized_routine': 'Votre routine de soins personnalisée',
+      'journey.track_products': 'Suivez vos produits et vos progrès',
+      'journey.never_miss': 'Ne manquez jamais votre routine de soins',
+      'journey.preview_notice': 'Ceci est un aperçu. Inscrivez-vous pour créer votre routine personnalisée et suivre vos produits!',
+      'journey.morning_routine': 'Routine du matin',
+      'journey.evening_routine': 'Routine du soir',
+      'journey.opened': 'Ouvert',
+      'journey.expires': 'Expire',
+      'journey.expiring_soon': 'Expire bientôt',
+      'journey.active': 'Actif',
+      'journey.inactive': 'Inactif',
       
       // Profile & Comparison
       'profile.title': 'Mon Profil',
@@ -1026,6 +1095,13 @@ const resources = {
       'community.connect': '与他人连接',
       'community.skincare_diaries': '护肤日记',
       'community.trending': '热门话题',
+      'community.trending_products': '热门产品',
+      'community.share_discover': '分享您的护肤旅程，发现热门趋势',
+      'community.discover_trending': '发现社区中的热门产品',
+      'community.preview_notice': '这是社区功能的预览。注册以分享您自己的护肤旅程并与他人互动！',
+      'community.signup_to_like': '注册以点赞帖子！',
+      'community.signup_to_comment': '注册以评论！',
+      'community.mentions': '次提及',
       
       // Smart Routine features
       'routine.title': '智能护肤流程',
@@ -1043,6 +1119,22 @@ const resources = {
       
       // Reminders
       'reminders.title': '提醒',
+
+      // My Skin Journey
+      'journey.smart_routine': '智能护肤流程',
+      'journey.product_library': '产品库',
+      'journey.reminders': '提醒',
+      'journey.personalized_routine': '您的个性化护肤流程',
+      'journey.track_products': '追踪您的产品和进展',
+      'journey.never_miss': '永不错过您的护肤流程',
+      'journey.preview_notice': '这是一个预览。注册以创建您的个性化流程并追踪您的产品！',
+      'journey.morning_routine': '早间护肤',
+      'journey.evening_routine': '晚间护肤',
+      'journey.opened': '已开封',
+      'journey.expires': '过期时间',
+      'journey.expiring_soon': '即将过期',
+      'journey.active': '使用中',
+      'journey.inactive': '未使用',
 
       // Profile & Comparison
       'profile.title': '我的资料',

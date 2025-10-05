@@ -116,14 +116,14 @@ export function MySkinJourneySection({
           className="text-center mb-8"
         >
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-            {initialTab === 'routine' && 'Smart Routine'}
-            {initialTab === 'library' && 'Product Library'}
-            {initialTab === 'reminders' && 'Reminders'}
+            {initialTab === 'routine' && t('journey.smart_routine')}
+            {initialTab === 'library' && t('journey.product_library')}
+            {initialTab === 'reminders' && t('journey.reminders')}
           </h1>
           <p className="text-muted-foreground">
-            {initialTab === 'routine' && 'Your personalized skincare routine'}
-            {initialTab === 'library' && 'Track your products and progress'}
-            {initialTab === 'reminders' && 'Never miss your skincare routine'}
+            {initialTab === 'routine' && t('journey.personalized_routine')}
+            {initialTab === 'library' && t('journey.track_products')}
+            {initialTab === 'reminders' && t('journey.never_miss')}
           </p>
         </motion.div>
 
@@ -131,7 +131,7 @@ export function MySkinJourneySection({
         <Card className="mb-6 border-primary/20 bg-primary/5">
           <CardContent className="pt-6">
             <p className="text-center text-sm text-muted-foreground">
-              👋 This is a preview. Sign up to create your personalized routine and track your products!
+              👋 {t('journey.preview_notice')}
             </p>
           </CardContent>
         </Card>
@@ -147,7 +147,7 @@ export function MySkinJourneySection({
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Sun className="w-5 h-5 text-yellow-500" />
-                    Morning Routine
+                    {t('journey.morning_routine')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -180,7 +180,7 @@ export function MySkinJourneySection({
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Cloud className="w-5 h-5 text-blue-500" />
-                    Evening Routine
+                    {t('journey.evening_routine')}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
@@ -228,12 +228,12 @@ export function MySkinJourneySection({
                           {product.brand} • {product.category}
                         </p>
                         <div className="flex gap-4 text-xs text-muted-foreground">
-                          <span>Opened: {product.opened}</span>
-                          <span>Expires: {product.expires}</span>
+                          <span>{t('journey.opened')}: {product.opened}</span>
+                          <span>{t('journey.expires')}: {product.expires}</span>
                         </div>
                       </div>
                       <Badge variant={product.status === 'expiring-soon' ? 'destructive' : 'secondary'}>
-                        {product.status === 'expiring-soon' ? 'Expiring Soon' : 'Active'}
+                        {product.status === 'expiring-soon' ? t('journey.expiring_soon') : t('journey.active')}
                       </Badge>
                     </div>
                   </CardContent>
@@ -270,7 +270,7 @@ export function MySkinJourneySection({
                         </div>
                       </div>
                       <Badge variant={reminder.active ? 'secondary' : 'outline'}>
-                        {reminder.active ? 'Active' : 'Inactive'}
+                        {reminder.active ? t('journey.active') : t('journey.inactive')}
                       </Badge>
                     </div>
                   </CardContent>

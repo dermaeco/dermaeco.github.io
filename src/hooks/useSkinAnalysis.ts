@@ -4,6 +4,7 @@ import { useAuth } from '@/contexts/AuthContext'
 import { useGuestMode } from '@/hooks/useGuestMode'
 import { supabase } from '@/lib/supabase'
 import { AnalysisResults } from '@/types'
+import { mockProducts } from '@/data/mockData'
 import toast from 'react-hot-toast'
 
 interface AnalysisData {
@@ -208,89 +209,118 @@ export function useSkinAnalysis() {
     if (!user && !isGuest) throw new Error('User not authenticated')
     
     try {
-      // For now, provide demo recommendations for all users
-      // TODO: Implement real product recommendation Edge Function
       await new Promise(resolve => setTimeout(resolve, 1500)) // Simulate loading
       
-      return {
-        recommendations: [
-          {
-            id: 'demo-eucerin-vitamin-c',
-            name: 'Eucerin Hyaluron-Filler Vitamin C Booster',
-            brand: 'Eucerin',
-            category: 'serum',
-            price_min: 28.00,
-            price_max: 35.00,
-            currency: 'EUR',
-            country_origin: 'Germany',
-            skin_types: ['all'],
-            concerns_addressed: ['spots', 'dullness', 'wrinkles'],
-            key_ingredients: ['Vitamin C', 'Hyaluronic Acid', 'Licochalcone A'],
-            purchase_urls: {
-              official: 'https://www.eucerin.com',
-              amazon: 'https://www.amazon.de/s?k=eucerin+vitamin+c'
-            },
-            image_url: '/images/products/eucerin-vitamin-c.png',
-            recommendation_score: 85,
-            recommendation_reason: 'Perfect for your combination skin type and addresses dark spots effectively',
-            priority_level: 1,
-            rating: 4.4
-          },
-          {
-            id: 'demo-laroche-retinol',
-            name: 'La Roche-Posay Redermic R Anti-Age Retinol Serum',
-            brand: 'La Roche-Posay',
-            category: 'serum',
-            price_min: 35.00,
-            price_max: 42.00,
-            currency: 'EUR',
-            country_origin: 'France',
-            skin_types: ['normal', 'combination', 'mature'],
-            concerns_addressed: ['wrinkles', 'texture', 'spots'],
-            key_ingredients: ['Retinol', 'Adenosine', 'LHA'],
-            purchase_urls: {
-              official: 'https://www.laroche-posay.com',
-              amazon: 'https://www.amazon.de/s?k=la+roche+posay+retinol'
-            },
-            image_url: '/images/products/laroche-retinol.jpg',
-            recommendation_score: 82,
-            recommendation_reason: 'Gentle retinol formula ideal for improving skin texture and reducing fine lines',
-            priority_level: 1,
-            rating: 4.3
-          },
-          {
-            id: 'demo-caudalie-radiance',
-            name: 'Caudalie Vinoperfect Radiance Serum',
-            brand: 'Caudalie',
-            category: 'serum',
-            price_min: 42.00,
-            price_max: 49.00,
-            currency: 'EUR',
-            country_origin: 'France',
-            skin_types: ['all'],
-            concerns_addressed: ['spots', 'dullness', 'hyperpigmentation'],
-            key_ingredients: ['Viniferine', 'Glycolic Acid', 'Vitamin C'],
-            purchase_urls: {
-              official: 'https://www.caudalie.com',
-              sephora: 'https://www.sephora.com/search?keyword=caudalie'
-            },
-            image_url: '/images/products/caudalie-radiance.jpg',
-            recommendation_score: 80,
-            recommendation_reason: 'Natural ingredients that brighten skin and reduce hyperpigmentation',
-            priority_level: 2,
-            rating: 4.1
+      // Get analysis results to determine skin type and concerns
+      const skinType = analysisResults?.analysis?.skin_type || 'combination'
+      const concerns: string[] = []
+      
+      // Determine concerns based on scores
+      if (analysisResults?.analysis) {
+        const analysis = analysisResults.analysis
+        if (analysis.wrinkles_score && analysis.wrinkles_score >= 5) concerns.push('Wrinkles', 'Anti-aging')
+        if (analysis.spots_score && analysis.spots_score >= 5) concerns.push('Dark Spots', 'Hyperpigmentation')
+        if (analysis.acne_score && analysis.acne_score >= 5) concerns.push('Acne', 'Blemishes')
+        if (analysis.texture_score && analysis.texture_score >= 5) concerns.push('Texture', 'Uneven Skin')
+        if (analysis.hydration_score && analysis.hydration_score >= 5) concerns.push('Dryness', 'Hydration')
+        if (analysis.sebum_score && analysis.sebum_score >= 5) concerns.push('Oily Skin', 'Excess Oil')
+        if (analysis.pores_score && analysis.pores_score >= 5) concerns.push('Large Pores')
+        if (analysis.redness_score && analysis.redness_score >= 5) concerns.push('Redness', 'Sensitivity')
+      }
+      
+      // Filter and score products based on skin type and concerns
+      const scoredProducts = mockProducts.map(product => {
+        let score = 0
+        
+        // Match skin type (40 points)
+        const productSkinTypes = product.skin_types.map(t => t.toLowerCase())
+        if (productSkinTypes.some(t => t.includes('all') || t.includes(skinType))) {
+          score += 40
+        }
+        
+        // Match concerns (40 points)
+        const concernMatches = product.concerns_addressed.filter(concern =>
+          concerns.some(userConcern => 
+            concern.toLowerCase().includes(userConcern.toLowerCase()) ||
+            userConcern.toLowerCase().includes(concern.toLowerCase())
+          )
+        ).length
+        score += Math.min(concernMatches * 10, 40)
+        
+        // Rating bonus (10 points)
+        if (product.rating) {
+          score += (product.rating / 5) * 10
+        }
+        
+        // Review count bonus (10 points)
+        if (product.review_count && product.review_count > 1000) {
+          score += 10
+        } else if (product.review_count && product.review_count > 500) {
+          score += 5
+        }
+        
+        return {
+          ...product,
+          price_min: product.price_min || 0,
+          price_max: product.price_max || product.price_min || 0,
+          recommendation_score: Math.round(score),
+          recommendation_reason: generateRecommendationReason(product, skinType, concerns),
+          priority_level: score >= 80 ? 1 : score >= 60 ? 2 : 3,
+          country_origin: 'Switzerland', // Default for display
+          purchase_urls: {
+            official: product.affiliate_url || '#',
+            amazon: `https://www.amazon.com/s?k=${encodeURIComponent(product.brand + ' ' + product.name)}`
           }
-        ],
-        total_count: 3,
+        }
+      })
+      
+      // Sort by score and return top 12
+      const topRecommendations = scoredProducts
+        .sort((a, b) => b.recommendation_score - a.recommendation_score)
+        .slice(0, 12)
+      
+      return {
+        recommendations: topRecommendations,
+        total_count: topRecommendations.length,
         analysis_summary: {
-          skin_type: 'combination',
-          primary_concerns: ['dark spots', 'hydration', 'fine lines']
+          skin_type: skinType,
+          primary_concerns: concerns.slice(0, 3)
         }
       }
     } catch (error: any) {
       toast.error(error.message || 'Failed to get recommendations')
       throw error
     }
+  }
+  
+  function generateRecommendationReason(product: any, skinType: string, concerns: string[]): string {
+    const reasons: string[] = []
+    
+    // Skin type match
+    const productSkinTypes = product.skin_types.map((t: string) => t.toLowerCase())
+    if (productSkinTypes.some((t: string) => t.includes(skinType))) {
+      reasons.push(`ideal for ${skinType} skin`)
+    }
+    
+    // Concern match
+    const matchedConcerns = product.concerns_addressed.filter((concern: string) =>
+      concerns.some(userConcern => 
+        concern.toLowerCase().includes(userConcern.toLowerCase()) ||
+        userConcern.toLowerCase().includes(concern.toLowerCase())
+      )
+    )
+    if (matchedConcerns.length > 0) {
+      reasons.push(`addresses ${matchedConcerns[0].toLowerCase()}`)
+    }
+    
+    // Key ingredient highlight
+    if (product.key_ingredients && product.key_ingredients.length > 0) {
+      reasons.push(`contains ${product.key_ingredients[0]}`)
+    }
+    
+    return reasons.length > 0 
+      ? `Perfect match: ${reasons.join(', ')}`
+      : 'Recommended based on your skin profile'
   }
 
   async function loadAnalysis(analysisId: string) {

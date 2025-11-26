@@ -99,6 +99,7 @@ export interface Product {
   skin_types: string[]
   concerns_addressed: string[]
   affiliate_url?: string
+  country_origin?: string
 }
 
 export interface UserProductLibrary {

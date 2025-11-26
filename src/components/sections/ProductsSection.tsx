@@ -72,7 +72,11 @@ export function ProductsSection({ analysisId, onBack }: ProductsSectionProps) {
     }
   }, [analysisId, getRecommendations])
   
-  const categories = ['all', 'serum', 'moisturizer', 'cleanser', 'toner', 'facial_oil']
+  // Dynamic categories based on actual products
+  const categories = React.useMemo(() => {
+    const uniqueCategories = new Set(products.map(p => p.category))
+    return ['all', ...Array.from(uniqueCategories)]
+  }, [products])
   
   const filteredProducts = filter === 'all' 
     ? products 

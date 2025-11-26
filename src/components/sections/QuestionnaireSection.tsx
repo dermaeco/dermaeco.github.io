@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { motion } from 'framer-motion'
-import { Moon, Brain, Utensils, Dumbbell, Heart, Users, Wine } from 'lucide-react'
+import { Moon, Brain, Utensils, Dumbbell, Heart, Users, Wine, DollarSign, Leaf } from 'lucide-react'
 
 interface QuestionnaireData {
   sleep_hours: number
@@ -16,6 +16,8 @@ interface QuestionnaireData {
   smoking_status: string
   alcohol_consumption: string
   environmental_factors: string[]
+  budget_level: string
+  product_preference: string
 }
 
 interface QuestionnaireSectionProps {
@@ -35,7 +37,9 @@ export function QuestionnaireSection({ onComplete, onBack, isAnalyzing }: Questi
     skin_concerns: [],
     smoking_status: 'never',
     alcohol_consumption: 'occasional',
-    environmental_factors: []
+    environmental_factors: [],
+    budget_level: 'medium',
+    product_preference: 'any'
   })
   
   const dietOptions = [
@@ -88,6 +92,19 @@ export function QuestionnaireSection({ onComplete, onBack, isAnalyzing }: Questi
     { value: 'humid_climate', label: t('environment.humid_climate') },
     { value: 'air_conditioning', label: t('environment.air_conditioning') },
     { value: 'heating', label: t('environment.heating') }
+  ]
+  
+  const budgetOptions = [
+    { value: 'low', label: 'CHF 10-30', description: 'Budget-friendly' },
+    { value: 'medium', label: 'CHF 30-70', description: 'Mid-range' },
+    { value: 'high', label: 'CHF 70-150', description: 'Premium' },
+    { value: 'luxury', label: 'CHF 150+', description: 'Luxury' }
+  ]
+  
+  const productPreferences = [
+    { value: 'natural', label: 'Pure Natural', description: 'Plant-based & organic' },
+    { value: 'scientific', label: 'Scientific/Chemical', description: 'Advanced formulations' },
+    { value: 'any', label: 'No Preference', description: 'Both natural & scientific' }
   ]
   
   const handleConcernToggle = (concern: string) => {
@@ -322,6 +339,56 @@ export function QuestionnaireSection({ onComplete, onBack, isAnalyzing }: Questi
                         }`}
                       >
                         {factor.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Budget Level */}
+                <div className="space-y-3">
+                  <label className="flex items-center space-x-2 text-stone-700 font-medium">
+                    <DollarSign className="w-5 h-5 text-gray-600" />
+                    <span>{t('questionnaire.budget', 'Budget Level')}</span>
+                  </label>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {budgetOptions.map(option => (
+                      <button
+                        key={option.value}
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, budget_level: option.value }))}
+                        className={`p-4 rounded-xl border transition-all duration-300 text-left ${
+                          formData.budget_level === option.value
+                            ? 'bg-gray-100 border-gray-300 text-black'
+                            : 'bg-white border-stone-200 text-stone-600 hover:bg-stone-50'
+                        }`}
+                      >
+                        <div className="font-medium mb-1">{option.label}</div>
+                        <div className="text-xs text-stone-500">{option.description}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Product Preference */}
+                <div className="space-y-3">
+                  <label className="flex items-center space-x-2 text-stone-700 font-medium">
+                    <Leaf className="w-5 h-5 text-gray-600" />
+                    <span>{t('questionnaire.product_preference', 'Product Preference')}</span>
+                  </label>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {productPreferences.map(option => (
+                      <button
+                        key={option.value}
+                        type="button"
+                        onClick={() => setFormData(prev => ({ ...prev, product_preference: option.value }))}
+                        className={`p-4 rounded-xl border transition-all duration-300 text-left ${
+                          formData.product_preference === option.value
+                            ? 'bg-gray-100 border-gray-300 text-black'
+                            : 'bg-white border-stone-200 text-stone-600 hover:bg-stone-50'
+                        }`}
+                      >
+                        <div className="font-medium mb-1">{option.label}</div>
+                        <div className="text-xs text-stone-500">{option.description}</div>
                       </button>
                     ))}
                   </div>

@@ -39,6 +39,8 @@ interface QuestionnaireData {
   smoking_status: string
   alcohol_consumption: string
   environmental_factors: string[]
+  budget_level: string
+  product_preference: string
 }
 
 type AppSection = 'home' | 'analysis' | 'community' | 'my-skin-journey' | 'our-vision' | 'upload' | 'questionnaire' | 'results' | 'products' | 'smart-routine' | 'product-library' | 'reminders' | 'skincare-diaries' | 'trending' | 'profile' | 'compare'

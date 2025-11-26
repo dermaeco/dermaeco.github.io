@@ -5,6 +5,7 @@ import { useGuestMode } from '@/hooks/useGuestMode'
 import { supabase } from '@/lib/supabase'
 import { AnalysisResults } from '@/types'
 import { mockProducts } from '@/data/mockData'
+import { generateScientificRecommendation } from '@/lib/ingredientBenefits'
 import toast from 'react-hot-toast'
 
 interface AnalysisData {
@@ -23,6 +24,8 @@ interface QuestionnaireData {
   smoking_status?: string
   alcohol_consumption?: string
   environmental_factors?: string[]
+  budget_level?: string
+  product_preference?: string
 }
 
 export function useSkinAnalysis() {
@@ -205,7 +208,7 @@ export function useSkinAnalysis() {
     }
   }
 
-  async function getRecommendations(analysisId: string, preferences?: any) {
+  async function getRecommendations(analysisId: string, preferences?: QuestionnaireData) {
     if (!user && !isGuest) throw new Error('User not authenticated')
     
     try {
@@ -228,51 +231,87 @@ export function useSkinAnalysis() {
         if (analysis.redness_score && analysis.redness_score >= 5) concerns.push('Redness', 'Sensitivity')
       }
       
-      // Filter and score products based on skin type and concerns
-      const scoredProducts = mockProducts.map(product => {
-        let score = 0
-        
-        // Match skin type (40 points)
-        const productSkinTypes = product.skin_types.map(t => t.toLowerCase())
-        if (productSkinTypes.some(t => t.includes('all') || t.includes(skinType))) {
-          score += 40
-        }
-        
-        // Match concerns (40 points)
-        const concernMatches = product.concerns_addressed.filter(concern =>
-          concerns.some(userConcern => 
-            concern.toLowerCase().includes(userConcern.toLowerCase()) ||
-            userConcern.toLowerCase().includes(concern.toLowerCase())
-          )
-        ).length
-        score += Math.min(concernMatches * 10, 40)
-        
-        // Rating bonus (10 points)
-        if (product.rating) {
-          score += (product.rating / 5) * 10
-        }
-        
-        // Review count bonus (10 points)
-        if (product.review_count && product.review_count > 1000) {
-          score += 10
-        } else if (product.review_count && product.review_count > 500) {
-          score += 5
-        }
-        
-        return {
-          ...product,
-          price_min: product.price_min || 0,
-          price_max: product.price_max || product.price_min || 0,
-          recommendation_score: Math.round(score),
-          recommendation_reason: generateRecommendationReason(product, skinType, concerns),
-          priority_level: score >= 80 ? 1 : score >= 60 ? 2 : 3,
-          country_origin: 'Switzerland', // Default for display
-          purchase_urls: {
-            official: product.affiliate_url || '#',
-            amazon: `https://www.amazon.com/s?k=${encodeURIComponent(product.brand + ' ' + product.name)}`
+      // Budget filtering
+      const budgetRanges: { [key: string]: { min: number; max: number } } = {
+        low: { min: 0, max: 30 },
+        medium: { min: 30, max: 70 },
+        high: { min: 70, max: 150 },
+        luxury: { min: 150, max: 10000 }
+      }
+      
+      const budgetLevel = preferences?.budget_level || 'medium'
+      const budgetRange = budgetRanges[budgetLevel]
+      
+      // Product preference filtering
+      const productPreference = preferences?.product_preference || 'any'
+      
+      // Filter and score products
+      const scoredProducts = mockProducts
+        .filter(product => {
+          // Budget filter
+          const productPrice = product.price_min || 0
+          if (productPrice < budgetRange.min || productPrice > budgetRange.max) {
+            return false
           }
-        }
-      })
+          
+          // Product preference filter
+          if (productPreference !== 'any') {
+            const isNatural = product.category.toLowerCase().includes('natural') || 
+                            product.key_ingredients?.some(ing => 
+                              ['oil', 'extract', 'butter', 'botanical'].some(term => 
+                                ing.toLowerCase().includes(term)
+                              )
+                            )
+            if (productPreference === 'natural' && !isNatural) return false
+            if (productPreference === 'scientific' && isNatural) return false
+          }
+          
+          return true
+        })
+        .map(product => {
+          let score = 0
+          
+          // Match skin type (40 points)
+          const productSkinTypes = product.skin_types.map(t => t.toLowerCase())
+          if (productSkinTypes.some(t => t.includes('all') || t.includes(skinType))) {
+            score += 40
+          }
+          
+          // Match concerns (40 points)
+          const concernMatches = product.concerns_addressed.filter(concern =>
+            concerns.some(userConcern => 
+              concern.toLowerCase().includes(userConcern.toLowerCase()) ||
+              userConcern.toLowerCase().includes(concern.toLowerCase())
+            )
+          ).length
+          score += Math.min(concernMatches * 10, 40)
+          
+          // Rating bonus (10 points)
+          if (product.rating) {
+            score += (product.rating / 5) * 10
+          }
+          
+          // Review count bonus (10 points)
+          if (product.review_count && product.review_count > 1000) {
+            score += 10
+          } else if (product.review_count && product.review_count > 500) {
+            score += 5
+          }
+          
+          return {
+            ...product,
+            price_min: product.price_min || 0,
+            price_max: product.price_max || product.price_min || 0,
+            recommendation_score: Math.round(score),
+            recommendation_reason: generateScientificRecommendation(product, skinType, concerns),
+            priority_level: score >= 80 ? 1 : score >= 60 ? 2 : 3,
+            country_origin: product.country_origin || 'Switzerland',
+            purchase_urls: {
+              official: product.affiliate_url || '#',
+              amazon: `https://www.amazon.com/s?k=${encodeURIComponent(product.brand + ' ' + product.name)}`
+            }
+          }
+        })
       
       // Sort by score and return top 12
       const topRecommendations = scoredProducts
@@ -293,35 +332,6 @@ export function useSkinAnalysis() {
     }
   }
   
-  function generateRecommendationReason(product: any, skinType: string, concerns: string[]): string {
-    const reasons: string[] = []
-    
-    // Skin type match
-    const productSkinTypes = product.skin_types.map((t: string) => t.toLowerCase())
-    if (productSkinTypes.some((t: string) => t.includes(skinType))) {
-      reasons.push(`ideal for ${skinType} skin`)
-    }
-    
-    // Concern match
-    const matchedConcerns = product.concerns_addressed.filter((concern: string) =>
-      concerns.some(userConcern => 
-        concern.toLowerCase().includes(userConcern.toLowerCase()) ||
-        userConcern.toLowerCase().includes(concern.toLowerCase())
-      )
-    )
-    if (matchedConcerns.length > 0) {
-      reasons.push(`addresses ${matchedConcerns[0].toLowerCase()}`)
-    }
-    
-    // Key ingredient highlight
-    if (product.key_ingredients && product.key_ingredients.length > 0) {
-      reasons.push(`contains ${product.key_ingredients[0]}`)
-    }
-    
-    return reasons.length > 0 
-      ? `Perfect match: ${reasons.join(', ')}`
-      : 'Recommended based on your skin profile'
-  }
 
   async function loadAnalysis(analysisId: string) {
     if (!user) throw new Error('User not authenticated')
